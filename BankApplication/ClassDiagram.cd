@@ -21,10 +21,10 @@
       <FileName>CreditAccount.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BankApplication.Customer" Collapsed="true">
-    <Position X="7.25" Y="1.25" Width="1.5" />
+  <Class Name="BankApplication.Customer">
+    <Position X="9.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAEACAAAAAAAAAAEA=</HashCode>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>

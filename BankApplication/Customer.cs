@@ -8,16 +8,20 @@ namespace BankApplication
 {
     class Customer
     {
+        private long ssn;
         public string Name { get; set; }
-        public long PNr { get; private set; }
+        public long SSN 
+        { 
+            get { return ssn; }
+            set { if (value.ToString().Length != 10) ssn = 0; else ssn = value; }
+        }
         public List<Account> Accounts { get; set; }
 
-        internal Account Account
+        public Customer(long ssn, string name, List<Account> account = null)
         {
-            get => default;
-            set
-            {
-            }
+            SSN = ssn;
+            Name = name;
+            Accounts = account;
         }
     }
 }
