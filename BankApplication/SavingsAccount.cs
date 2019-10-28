@@ -11,6 +11,12 @@ namespace BankApplication
         public double WithdrawFee { get; set; }
         public bool FreeWithdraw { get; set; }
 
+        public SavingsAccount (double withdrawFee, bool freeWithdraw) : base(balance, interest, accountId)
+        {
+            WithdrawFee = withdrawFee;
+            FreeWithdraw = freeWithdraw;
+        }
+
 
     }
 }
