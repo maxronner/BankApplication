@@ -117,12 +117,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AccountLogic.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BankLogic.cs" />
     <Compile Include="CreditAccount.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="CustomerLogic.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
