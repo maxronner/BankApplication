@@ -30,11 +30,26 @@ namespace BankApplication
                 customers.Add(new Customer(ssn, name));
                 return true;
             }
-            //Customers.Add(new Customer(ssn, name))
         }
         public List<string> GetCustomer(long ssn) 
         {
-            //sql?
+            List<string> customerInfo = new List<string>();
+
+            foreach (var item in customers)
+            {
+                if (item.SSN == ssn)
+                {
+                    customerInfo.Add(item.Name);
+                    customerInfo.Add(item.SSN.ToString());
+                    foreach (var account in item.Accounts)
+                    {
+                        customerInfo.Add(account.AccountID.ToString());
+                        customerInfo.Add(account.Balance.ToString());
+                        customerInfo.Add(account.Interest.ToString());
+                    }
+                }
+            }
+            return customerInfo;
         }
         public bool ChangeCustomerName(string name, long ssn) 
         {
