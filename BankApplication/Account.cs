@@ -10,14 +10,12 @@ namespace BankApplication
     {
         public long Balance { get; set; }
         public long Interest { get; set; }
-        public string Type { get; set; }
         public long AccountID { get; set; }
 
-        public Account(long balance, long interest, string type, long accountId)
+        public Account(long balance, long interest, long accountId)
         {
             Balance = balance;
             Interest = interest;
-            Type = type;
             AccountID = accountId;
         }
     }

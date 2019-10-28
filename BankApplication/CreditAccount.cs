@@ -15,10 +15,11 @@ namespace BankApplication
             get { return debtInterest; } 
             set { if (value < 0) debtInterest = 0; else debtInterest = value; }
         }
-        public CreditAccount(double debtInterest, long creditLimit)
+        public CreditAccount(double debtInterest, long creditLimit, long accountID, long balance = 0, long interest = 0) :base(balance, interest, accountID)
         {
             this.debtInterest = debtInterest;
             CreditLimit = creditLimit;
+
         }
     }
 }
