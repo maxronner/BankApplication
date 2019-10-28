@@ -9,10 +9,10 @@ namespace BankApplication
     abstract class Account
     {
         public long Balance { get; set; }
-        public long Interest { get; set; }
-        public long AccountID { get; set; }
+        public double Interest { get; set; }
+        public long AccountID { get; set; } //MÅSTE VARA UNIKT
 
-        public Account(long balance, long interest, long accountId)
+        public Account(long balance, double interest, long accountId)
         {
             Balance = balance;
             Interest = interest;

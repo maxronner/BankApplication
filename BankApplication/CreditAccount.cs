@@ -9,17 +9,21 @@ namespace BankApplication
     class CreditAccount : Account
     {
         private double debtInterest;
-        public long CreditLimit { get; set; }
+        private long creditLimit;
+        public long CreditLimit 
+        {
+            get { return creditLimit; }
+            set { if (value < 0) creditLimit = 0; else creditLimit = value; }
+        }
         public double DebtInterest 
         { 
             get { return debtInterest; } 
             set { if (value < 0) debtInterest = 0; else debtInterest = value; }
         }
-        public CreditAccount(double debtInterest, long creditLimit, long accountID, long balance = 0, long interest = 0) :base(balance, interest, accountID)
+        public CreditAccount(long accountID, long balance = 0, double interest = 0.005) :base(balance, interest, accountID)
         {
-            this.debtInterest = debtInterest;
-            CreditLimit = creditLimit;
-
+            debtInterest = 0.07;
+            creditLimit = 5000;
         }
     }
 }
