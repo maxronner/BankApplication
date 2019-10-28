@@ -10,5 +10,7 @@ namespace BankApplication
     {
         public double WithdrawFee { get; set; }
         public bool FreeWithdraw { get; set; }
+
+
     }
 }
