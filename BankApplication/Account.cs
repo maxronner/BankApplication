@@ -13,6 +13,14 @@ namespace BankApplication
         public string Type { get; set; }
         public long AccountID { get; set; }
 
+        public Account(long balance, long interest, string type, long accountId)
+        {
+            balance = Balance;
+            interest = Interest;
+            type = Type;
+            accountId = AccountID;
+        }
+
         internal Transactions Transactions
         {
             get => default;
