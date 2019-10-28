@@ -36,7 +36,18 @@ namespace BankApplication
         {
             //sql?
         }
-        public bool ChangeCustomerName(string name, long ssn) { }
+        public bool ChangeCustomerName(string name, long ssn) 
+        {
+            for (int i = 0; i < customers.Count; i++)
+            {
+                if (customers[i].SSN == ssn)
+                {
+                    customers[i].Name = name;
+                    return true;
+                }
+            }
+            return false;
+        }
         public List<string> RemoveCustomer(long ssn) { }
 
     }
