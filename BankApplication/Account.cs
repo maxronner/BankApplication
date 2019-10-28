@@ -15,18 +15,10 @@ namespace BankApplication
 
         public Account(long balance, long interest, string type, long accountId)
         {
-            balance = Balance;
-            interest = Interest;
-            type = Type;
-            accountId = AccountID;
-        }
-
-        internal Transactions Transactions
-        {
-            get => default;
-            set
-            {
-            }
+            Balance = balance;
+            Interest = interest;
+            Type = type;
+            AccountID = accountId;
         }
     }
 }
