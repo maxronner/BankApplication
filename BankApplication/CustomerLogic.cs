@@ -12,7 +12,12 @@ namespace BankApplication
         public ObservableCollection<Customer> customers = new ObservableCollection<Customer>();
         public List<string> GetCustomers() 
         {
-            //foreach
+            List<string> customerInformation = new List<string>();
+            foreach (var item in customers)
+            {
+                customerInformation.Add($"Name: {item.Name}, SSN: {item.SSN}");
+            }
+            return customerInformation;
         }
         public bool AddCustomer(string name, long ssn) 
         {
