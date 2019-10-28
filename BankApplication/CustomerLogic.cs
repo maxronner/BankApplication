@@ -31,7 +31,7 @@ namespace BankApplication
                 return true;
             }
         }
-        public List<string> GetCustomer(long ssn) 
+        public List<string> GetCustomer(long ssn) //incomplete
         {
             List<string> customerInfo = new List<string>();
 
@@ -46,6 +46,16 @@ namespace BankApplication
                         customerInfo.Add(account.AccountID.ToString());
                         customerInfo.Add(account.Balance.ToString());
                         customerInfo.Add(account.Interest.ToString());
+                        if (account is CreditAccount tempCredit)
+                        {
+                            customerInfo.Add(tempCredit.CreditLimit.ToString());
+                            customerInfo.Add(tempCredit.DebtInterest.ToString());
+                        }
+                        else if (account is SavingsAccount tempSavings)
+                        {
+                            customerInfo.Add(tempSavings.FreeWithdraw.ToString());
+                            customerInfo.Add(tempSavings.WithdrawFee.ToString());
+                        }
                     }
                 }
             }
