@@ -8,11 +8,30 @@ namespace BankApplication
 {
     class CustomerLogic
     {
-        public List<string> GetCustomers() { }
-        public bool AddCustomer(string name, long pNr) { }
-        public List<string> GetCustomer(long pNr) { }
-        public bool ChangeCustomerName(string name, long pNr) { }
-        public List<string> RemoveCustomer(long pNr) { }
+        public List<Customer> customers = new List<Customer>();
+        public List<string> GetCustomers() 
+        {
+            //foreach
+        }
+        public bool AddCustomer(string name, long ssn) 
+        {
+            if (customers.Contains(new Customer(ssn, name)))
+            {
+                return false;
+            }
+            else
+            {
+                customers.Add(new Customer(ssn, name));
+                return true;
+            }
+            //Customers.Add(new Customer(ssn, name))
+        }
+        public List<string> GetCustomer(long ssn) 
+        {
+            //sql?
+        }
+        public bool ChangeCustomerName(string name, long ssn) { }
+        public List<string> RemoveCustomer(long ssn) { }
 
     }
 }

@@ -15,7 +15,7 @@ namespace BankApplication
             get { return creditLimit; }
             set { if (value < 0) creditLimit = 0; else creditLimit = value; }
         }
-        public double DebtInterest 
+        public double DebtInterest
         { 
             get { return debtInterest; } 
             set { if (value < 0) debtInterest = 0; else debtInterest = value; }
