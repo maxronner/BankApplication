@@ -73,7 +73,20 @@ namespace BankApplication
             }
             return false;
         }
-        public List<string> RemoveCustomer(long ssn) { }
-
+        public List<string> RemoveCustomer(long ssn) 
+        {
+            List<string> removedCustomer = new List<string>();
+            for (int i = 0; i < customers.Count; i++)
+            {
+                if (customers[i].SSN == ssn)
+                {
+                    foreach (var item in customers[i].Accounts)
+                    {
+                        removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
+                    }
+                }
+            }
+            return removedCustomer;
+        }
     }
 }
