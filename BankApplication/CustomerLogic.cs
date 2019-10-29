@@ -83,12 +83,19 @@ namespace BankApplication
                     foreach (var item in Customers[i].Accounts)
                     {
                         removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
+                        
                     }
                 }
             }
             return removedCustomer;
         }
-
-        
+        public void SortCustomers()
+        {
+            object temp = Customers;
+            List<Customer> customers = temp as List<Customer>;
+            customers.Sort();
+            temp = customers;
+            Customers = temp as ObservableCollection<Customer>;
+        }
     }
 }
