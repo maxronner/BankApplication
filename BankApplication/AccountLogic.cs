@@ -44,6 +44,12 @@ namespace BankApplication
                     }
                 }
             }
+
+            //var a =
+            //    from customer in CustomerLogic.Customers
+            //    from account in customer.Accounts
+            //    where ssn == customer.SSN && account.AccountID == accountID
+            //    select account;
             return null;
         }
 
