@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace BankApplication
 {
     class AccountLogic
     {
+        public ObservableCollection<Transaction> Transactions { get; set; } = new ObservableCollection<Transaction>();
         public int AddSavingsAccount(long ssn) 
         {
             foreach (var item in CustomerLogic.Customers)
@@ -80,10 +82,48 @@ namespace BankApplication
             }
             return false;
         }
+        public bool Withdraw(long ssn, int accountID, decimal amount) 
+        {
+            foreach (var customer in CustomerLogic.Customers)
+            {
+                if (customer.SSN == ssn)
+                {
+                    for (int i = 0; i < customer.Accounts.Count; i++)
+                    {
+                        if (customer.Accounts[i].AccountID == accountID)
+                        {
+                            customer.Accounts[i].Balance -= amount;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public string CloseAccount(long ssn, int accountID) 
+        {
+            foreach (var customer in CustomerLogic.Customers)
+            {
+                if (customer.SSN == ssn)
+                {
+                    for (int i = 0; i < customer.Accounts.Count; i++)
+                    {
+                        if (customer.Accounts[i].AccountID == accountID)
+                        {
+                            string deletedAccount = $"{customer.Accounts[i].Balance} {customer.Accounts[i].Interest}";
+                            customer.Accounts.RemoveAt(i);
+                            return deletedAccount;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
-        public bool Withdraw(long pNr, int accountId, decimal amount) { }
+        public int AddCreditAccount(long ssn)
+        {
 
-        public string CloseAccount(long pNr, int accountId) { }
-
+        }
+        public List<string> GetTransactions(long ssn, int accountID) { }
     }
 }
