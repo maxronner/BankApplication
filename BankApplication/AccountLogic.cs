@@ -22,7 +22,30 @@ namespace BankApplication
             return -1;
         }
 
-        public string GetAccount(long pNr, int accountId) { }
+        public string GetAccount(long ssn, int accountID) 
+        {
+            foreach (var customer in CustomerLogic.Customers)
+            {
+                if (customer.SSN == ssn)
+                {
+                    foreach (var account in customer.Accounts)
+                    {
+                        if (account.AccountID == accountID)
+                        {
+                            if (account is SavingsAccount)
+                            {
+                                return $"{account.AccountID}{account.Balance} Savings Account {account.Interest}";
+                            }
+                            else if (account is CreditAccount)
+                            {
+                                return $"{account.AccountID}{account.Balance} Credit Account {account.Interest}";
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         public bool Deposit(long pNr, int accountId, decimal amount) { }
 
