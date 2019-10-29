@@ -9,7 +9,6 @@ namespace BankApplication
 {
     class AccountLogic
     {
-        public ObservableCollection<Transaction> Transactions { get; set; } = new ObservableCollection<Transaction>();
         public int AddSavingsAccount(long ssn) 
         {
             foreach (var item in CustomerLogic.Customers)
@@ -122,8 +121,31 @@ namespace BankApplication
 
         public int AddCreditAccount(long ssn)
         {
-
+            foreach (var item in CustomerLogic.Customers)
+            {
+                if (item.SSN == ssn)
+                {
+                    int accountID = 1000 + item.Accounts.Count;
+                    item.Accounts.Add(new CreditAccount(accountID));
+                    return accountID;
+                }
+            }
+            return -1;
         }
-        public List<string> GetTransactions(long ssn, int accountID) { }
+        public List<string> GetTransactions(long ssn, int accountID) 
+        {
+            List<string> allTransactions = new List<string>();
+            var transaction =
+                from customer in CustomerLogic.Customers
+                from account in customer.Accounts
+                where account.AccountID == accountID && customer.SSN == ssn
+                select account;
+            Account temp = transaction.First();
+            for (int i = 0; i < temp.Transactions.Count; i++)
+            {
+                allTransactions.Add($"{temp.Transactions[i].Time.ToString()}, {temp.Transactions[i].TransactionType}, {temp.Transactions[i].Amount}, {temp.Transactions[i].NewBalance}");
+            }
+            return allTransactions;
+        }
     }
 }
