@@ -9,11 +9,11 @@ namespace BankApplication
 {
     class CustomerLogic
     {
-        public ObservableCollection<Customer> customers = new ObservableCollection<Customer>();
+        public ObservableCollection<Customer> Customers { get; } = new ObservableCollection<Customer>();
         public List<string> GetCustomers() 
         {
             List<string> customerInformation = new List<string>();
-            foreach (var item in customers)
+            foreach (var item in Customers)
             {
                 customerInformation.Add($"Name: {item.Name}, SSN: {item.SSN}");
             }
@@ -21,13 +21,13 @@ namespace BankApplication
         }
         public bool AddCustomer(string name, long ssn) 
         {
-            if (customers.Contains(new Customer(ssn, name)))
+            if (Customers.Contains(new Customer(ssn, name)))
             {
                 return false;
             }
             else
             {
-                customers.Add(new Customer(ssn, name));
+                Customers.Add(new Customer(ssn, name));
                 return true;
             }
         }
@@ -35,7 +35,7 @@ namespace BankApplication
         {
             List<string> customerInfo = new List<string>();
 
-            foreach (var item in customers)
+            foreach (var item in Customers)
             {
                 if (item.SSN == ssn)
                 {
@@ -63,11 +63,11 @@ namespace BankApplication
         }
         public bool ChangeCustomerName(string name, long ssn) 
         {
-            for (int i = 0; i < customers.Count; i++)
+            for (int i = 0; i < Customers.Count; i++)
             {
-                if (customers[i].SSN == ssn)
+                if (Customers[i].SSN == ssn)
                 {
-                    customers[i].Name = name;
+                    Customers[i].Name = name;
                     return true;
                 }
             }
@@ -76,11 +76,11 @@ namespace BankApplication
         public List<string> RemoveCustomer(long ssn) 
         {
             List<string> removedCustomer = new List<string>();
-            for (int i = 0; i < customers.Count; i++)
+            for (int i = 0; i < Customers.Count; i++)
             {
-                if (customers[i].SSN == ssn)
+                if (Customers[i].SSN == ssn)
                 {
-                    foreach (var item in customers[i].Accounts)
+                    foreach (var item in Customers[i].Accounts)
                     {
                         removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
                     }
