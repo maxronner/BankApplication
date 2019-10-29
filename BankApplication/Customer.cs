@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
-    class Customer
+    class Customer : IComparable
     {
         private long ssn;
         public string Name { get; set; }
@@ -22,6 +22,11 @@ namespace BankApplication
             SSN = ssn;
             Name = name;
             Accounts = account;
+        }
+        public int CompareTo(object obj)
+        {
+            Customer customer = (Customer)obj;
+            return this.Name.CompareTo(customer.Name);
         }
     }
 }
