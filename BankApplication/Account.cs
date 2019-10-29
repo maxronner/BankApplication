@@ -8,7 +8,7 @@ namespace BankApplication
 {
     abstract class Account
     {
-        public long Balance { get; set; }
+        public decimal Balance { get; set; }
         public double Interest { get; set; }
         public long AccountID { get; set; } //MÅSTE VARA UNIKT
 
