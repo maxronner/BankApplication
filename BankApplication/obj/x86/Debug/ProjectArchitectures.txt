@@ -1,1 +1,0 @@
-C:\Users\R\Source\Repos\BankApplication\BankApplication\BankApplication.csproj;x86
