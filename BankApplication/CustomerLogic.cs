@@ -10,7 +10,13 @@ namespace BankApplication
     class CustomerLogic
     {
         public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
-        public List<string> GetCustomers() 
+        public ObservableCollection<Customer> ListOfCustomers()
+        {
+            Customers.Add(new Customer(2110319901, "GunBorg"));
+
+            return Customers;
+        }
+        public List<string> GetCustomers()
         {
             List<string> customerInformation = new List<string>();
             foreach (var item in Customers)
@@ -19,7 +25,7 @@ namespace BankApplication
             }
             return customerInformation;
         }
-        public bool AddCustomer(string name, long ssn) 
+        public bool AddCustomer(string name, long ssn)
         {
             if (Customers.Contains(new Customer(ssn, name)))
             {
@@ -61,7 +67,7 @@ namespace BankApplication
             }
             return customerInfo;
         }
-        public bool ChangeCustomerName(string name, long ssn) 
+        public bool ChangeCustomerName(string name, long ssn)
         {
             for (int i = 0; i < Customers.Count; i++)
             {
@@ -73,7 +79,7 @@ namespace BankApplication
             }
             return false;
         }
-        public List<string> RemoveCustomer(long ssn) 
+        public List<string> RemoveCustomer(long ssn)
         {
             List<string> removedCustomer = new List<string>();
             for (int i = 0; i < Customers.Count; i++)
