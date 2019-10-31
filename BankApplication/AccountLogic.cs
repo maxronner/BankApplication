@@ -15,12 +15,27 @@ namespace BankApplication
             {
                 if (item.SSN == ssn)
                 {
-                    int accountID = 1000 + item.Accounts.Count;
+                    int accountID = AssignAccountID();
                     item.Accounts.Add(new SavingsAccount(0.01, accountID));
                     return accountID;
                 }
             }
             return -1;
+        }
+        public int AssignAccountID()
+        {
+            int availableID = 0;
+            foreach (var customer in CustomerLogic.Customers)
+            {
+                for (int i = 0; i < customer.Accounts.Count; i++)
+                {
+                    if (customer.Accounts[i].AccountID > availableID)
+                    {
+                        availableID = customer.Accounts[i].AccountID;
+                    }
+                }
+            }
+            return availableID + 1;
         }
 
         public string GetAccount(long ssn, int accountID) 
@@ -125,7 +140,7 @@ namespace BankApplication
             {
                 if (item.SSN == ssn)
                 {
-                    int accountID = 1000 + item.Accounts.Count;
+                    int accountID = AssignAccountID();
                     item.Accounts.Add(new CreditAccount(accountID));
                     return accountID;
                 }

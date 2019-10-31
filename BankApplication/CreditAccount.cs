@@ -20,7 +20,7 @@ namespace BankApplication
             get { return debtInterest; } 
             set { if (value < 0) debtInterest = 0; else debtInterest = value; }
         }
-        public CreditAccount(long accountID, long balance = 0, double interest = 0.005) :base(balance, interest, accountID)
+        public CreditAccount(int accountID, decimal balance = 0, double interest = 0.005) :base(balance, interest, accountID)
         {
             debtInterest = 0.07;
             creditLimit = 5000;

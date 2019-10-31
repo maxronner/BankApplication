@@ -11,7 +11,7 @@ namespace BankApplication
         public double WithdrawFee { get; set; }
         public bool FreeWithdraw { get; set; }
 
-        public SavingsAccount (double interest, long accountId, long balance = 0) : base(balance, interest, accountId)
+        public SavingsAccount (double interest, int accountId, decimal balance = 0) : base(balance, interest, accountId)
         {
             WithdrawFee = 0.02;
             FreeWithdraw = true;
