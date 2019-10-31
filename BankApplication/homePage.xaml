@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="BankApplication.homePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BankApplication"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#FFDDDADA">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GridView x:Name="myHeader" Grid.ColumnSpan="7" Grid.Row="0" VerticalAlignment="Stretch" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Background="#FFC5C2C2"/>
+        <Button x:Name="myBack" Content="Back"  FontSize="20" Foreground="#FF484747" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBlock x:Name="myLogo" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Text="Newton Bank" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="115" Width="470" FontSize="72" Foreground="#FFE7DCDC" FontFamily="Frank Ruhl Hofshi"/>
+        <Button Content="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" Foreground="{x:Null}" Background="{x:Null}"/>
+    </Grid>
+    
+</Page>

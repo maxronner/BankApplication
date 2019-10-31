@@ -8151,24 +8151,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\maxro\\.nuget\\packages\\": {},
+    "C:\\Users\\zette_xiwlvxv\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maxro\\source\\repos\\BankApplication\\BankApplication\\BankApplication.csproj",
+      "projectUniqueName": "C:\\Users\\zette_xiwlvxv\\Source\\Repos\\BankApplication\\BankApplication\\BankApplication.csproj",
       "projectName": "BankApplication",
-      "projectPath": "C:\\Users\\maxro\\source\\repos\\BankApplication\\BankApplication\\BankApplication.csproj",
-      "packagesPath": "C:\\Users\\maxro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maxro\\source\\repos\\BankApplication\\BankApplication\\obj\\",
+      "projectPath": "C:\\Users\\zette_xiwlvxv\\Source\\Repos\\BankApplication\\BankApplication\\BankApplication.csproj",
+      "packagesPath": "C:\\Users\\zette_xiwlvxv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zette_xiwlvxv\\Source\\Repos\\BankApplication\\BankApplication\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\maxro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zette_xiwlvxv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
