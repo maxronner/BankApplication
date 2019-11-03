@@ -20,11 +20,38 @@ namespace BankApplication
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class printTransactions : Page
+    public sealed partial class CustomerAddPage : Page
     {
-        public printTransactions()
+        public CustomerAddPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void SSN_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerLogic.Customers.Add(new Customer(long.Parse(CustomerSSN.Text), CustomerName.Text));
+            Frame.Navigate(typeof(CustomerListPage));
+
         }
     }
 }

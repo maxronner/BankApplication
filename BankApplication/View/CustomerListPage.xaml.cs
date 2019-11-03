@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -20,16 +21,32 @@ namespace BankApplication
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class printCustomer : Page
+    public sealed partial class CustomerListPage : Page
     {
-        public printCustomer()
+        public CustomerListPage()
         {
             this.InitializeComponent();
+            
         }
-
-        private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
+        private void CommandBar_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void CustomerSearchBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ViewDetails_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void AddAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void CreateCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CustomerAddPage));
         }
     }
 }

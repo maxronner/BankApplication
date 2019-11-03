@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
-    abstract class Account
+    public abstract class Account
     {
         public ObservableCollection<Transaction> Transactions { get; set; } = new ObservableCollection<Transaction>();
 
