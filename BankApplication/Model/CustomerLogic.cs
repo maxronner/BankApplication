@@ -9,7 +9,7 @@ namespace BankApplication
 {
     public class CustomerLogic
     {
-        public ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
+        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
         public ObservableCollection<Customer> GetCustomers()
         {
             ObservableCollection<Customer> customerInformation = new ObservableCollection<Customer>();

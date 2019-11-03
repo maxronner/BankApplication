@@ -13,17 +13,12 @@
     <Grid
         x:Name="LayoutRoot"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
         <RelativePanel>
-
             <TextBlock
                 x:Name="PageTitle"
                 Text="Customers"
                 Margin="2, 2"/>
-
-            <!--
-                On Windows 10, version 1607 or later, set DefaultLabelPosition to Right in code.
-                See CommandBar_Loaded event handler.
-            -->
             <CommandBar
                 x:Name="mainCommandBar"
                 HorizontalAlignment="Stretch"
@@ -62,18 +57,31 @@
                 RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.Below="PageTitle">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="MasterColumn" Width="320" />
+                    <ColumnDefinition x:Name="DetailColumn" Width="*" />
+                </Grid.ColumnDefinitions>
                 <ListView 
-                    x:Name="CustomerList"
-                    ItemsSource="{x:Bind ViewModel.Customers}">
+                    x:Name="MasterList"
+                    ItemsSource="{x:Bind ViewModel.Customers}"
+                    Grid.Column="0">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:Customer">
                             <TextBlock Text="{x:Bind Summary}"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-                
+                <ListView
+                    x:Name="DetailsList"
+                    ItemsSource=""
+                    Grid.Column="1">
+                    
+                </ListView>
             </Grid>
         </RelativePanel>
     </Grid>

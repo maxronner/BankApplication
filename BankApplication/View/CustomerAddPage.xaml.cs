@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankApplication.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,10 +23,11 @@ namespace BankApplication
     /// </summary>
     public sealed partial class CustomerAddPage : Page
     {
-        CustomerLogic customerLogic { get; set; } = new CustomerLogic();
+        public CustomerAddModel ViewModel = new CustomerAddModel();
         public CustomerAddPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new CustomerAddModel();
         }
 
         private void Name_TextChanged(object sender, TextChangedEventArgs e)
@@ -50,7 +52,7 @@ namespace BankApplication
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            customerLogic.Customers.Add(new Customer(long.Parse(CustomerSSN.Text), CustomerName.Text));
+            CustomerLogic.Customers.Add(new Customer(long.Parse(CustomerSSN.Text), CustomerName.Text));
             Frame.Navigate(typeof(CustomerListPage));
 
         }

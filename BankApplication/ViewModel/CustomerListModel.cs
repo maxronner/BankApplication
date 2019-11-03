@@ -14,9 +14,13 @@ namespace BankApplication.ViewModels
 
         public CustomerListModel()
         {
-            CustomerLogic customerLogic = new CustomerLogic();
-            customerLogic.Customers.Add(new Customer(123456789, "Max"));
-            Customers = new ObservableCollection<Customer>(customerLogic.Customers);
+            CustomerLogic.Customers.Add(new Customer(1234567890, "Max"));
+            CustomerLogic.Customers.Add(new Customer(1234567890, "Max"));
+            CustomerLogic.Customers.Add(new Customer(1234567890, "Max"));
+            CustomerLogic.Customers.Add(new Customer(1234567890, "Max"));
+            CustomerLogic.Customers.Add(new Customer(1234567890, "Max"));
+            CustomerLogic.Customers.Add(new Customer(1234567890, "Max"));
+            Customers = new ObservableCollection<Customer>(CustomerLogic.Customers);
         }
 
         public Customer Current
