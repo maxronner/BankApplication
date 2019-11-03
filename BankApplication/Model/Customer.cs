@@ -23,9 +23,9 @@ namespace BankApplication
             Name = name;
             Accounts = account;
         }
-        public string Summary()
+        public string Summary
         {
-            return $"{Name} {ssn}";
+            get { return $"{SSN}\t{Name}"; }
         }
         public int CompareTo(object obj)
         {

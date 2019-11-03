@@ -4,9 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:local="using:BankApplication"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    
 
     <Grid
         x:Name="LayoutRoot"
@@ -61,17 +63,17 @@
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.Below="PageTitle">
 
-                <ListView x:Name="Customers">
-                    
+                <ListView 
+                    x:Name="CustomerList"
+                    ItemsSource="{x:Bind ViewModel.Customers}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Customer">
+                            <TextBlock Text="{x:Bind Summary}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
 
-                <ProgressBar
-                    Margin="0,50,0,0"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Top"
-                    IsIndeterminate="True"
-                    Visibility="Collapsed" />
-
+                
             </Grid>
         </RelativePanel>
     </Grid>

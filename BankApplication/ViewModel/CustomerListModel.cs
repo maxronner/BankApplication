@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 
 namespace BankApplication.ViewModels
 {
-    class CustomerListModel
+    public class CustomerListModel
     {
         public ObservableCollection<Customer> Customers { get; set; }
+        public int CurrentCustomer { get; set; }
 
         public CustomerListModel()
         {
             CustomerLogic customerLogic = new CustomerLogic();
-            Customers = new ObservableCollection<Customer>(CustomerLogic.Customers);
+            customerLogic.Customers.Add(new Customer(123456789, "Max"));
+            Customers = new ObservableCollection<Customer>(customerLogic.Customers);
         }
 
+        public Customer Current
+        {
+            get => this.Customers.Count > 0 ? this.Customers[CurrentCustomer] : null;
+        }
     }
 }

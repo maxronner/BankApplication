@@ -22,6 +22,7 @@ namespace BankApplication
     /// </summary>
     public sealed partial class CustomerAddPage : Page
     {
+        CustomerLogic customerLogic { get; set; } = new CustomerLogic();
         public CustomerAddPage()
         {
             this.InitializeComponent();
@@ -49,7 +50,7 @@ namespace BankApplication
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            CustomerLogic.Customers.Add(new Customer(long.Parse(CustomerSSN.Text), CustomerName.Text));
+            customerLogic.Customers.Add(new Customer(long.Parse(CustomerSSN.Text), CustomerName.Text));
             Frame.Navigate(typeof(CustomerListPage));
 
         }

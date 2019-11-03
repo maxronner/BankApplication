@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -23,9 +24,12 @@ namespace BankApplication
     /// </summary>
     public sealed partial class CustomerListPage : Page
     {
+        public CustomerListModel ViewModel { get; set; }
         public CustomerListPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new CustomerListModel();
+            this.DataContext = ViewModel;
             
         }
         private void CommandBar_Loaded(object sender, RoutedEventArgs e)
