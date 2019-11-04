@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
-    class AccountLogic
+    public class AccountLogic
     {
-        public int AddSavingsAccount(long ssn) 
+        //skapa en instans av listan i CustomerLogic, ej static längre 
+   /*     public int AddSavingsAccount(Customer c) 
         {
-            foreach (var item in CustomerLogic.Customers)
+            /*foreach (var item in CustomerLogic.Customers)
             {
                 if (item.SSN == ssn)
                 {
@@ -21,9 +22,12 @@ namespace BankApplication
                 }
             }
             return -1;
-        }
+            /*int accountID = 1000 + c.Accounts.Count;
+            c.Accounts.Add(new SavingsAccount(0.01, accountID));
+            return accountID;
+        }*/
 
-        public string GetAccount(long ssn, int accountID) 
+      /* public string GetAccount(long ssn, int accountID) //ingen foreach, objekt customer c som inparam.
         {
             foreach (var customer in CustomerLogic.Customers)
             {
@@ -146,6 +150,6 @@ namespace BankApplication
                 allTransactions.Add($"{temp.Transactions[i].Time.ToString()}, {temp.Transactions[i].TransactionType}, {temp.Transactions[i].Amount}, {temp.Transactions[i].NewBalance}");
             }
             return allTransactions;
-        }
+        }*/
     }
 }

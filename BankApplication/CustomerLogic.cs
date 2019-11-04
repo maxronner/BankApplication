@@ -7,15 +7,10 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
-    class CustomerLogic
+    public class CustomerLogic
     {
-        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
-        public ObservableCollection<Customer> ListOfCustomers()
-        {
-            Customers.Add(new Customer(2110319901, "GunBorg"));
-
-            return Customers;
-        }
+        public ObservableCollection<Customer> Customers = new ObservableCollection<Customer>();
+        public ObservableCollection<Customer> ListOfCustomers { get {return Customers;} }
         public List<string> GetCustomers()
         {
             List<string> customerInformation = new List<string>();

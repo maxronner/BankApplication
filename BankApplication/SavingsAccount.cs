@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
-    class SavingsAccount : Account
+    public class SavingsAccount : Account
     {
         public double WithdrawFee { get; set; }
         public bool FreeWithdraw { get; set; }
