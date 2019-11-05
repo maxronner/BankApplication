@@ -6,143 +6,89 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Model
 {
-    public class AccountLogic
+    public static class AccountLogic
     {
-        public int AddSavingsAccount(long ssn)
+        public static int AddSavingsAccount(Customer customer)
         {
-            foreach (var item in CustomerLogic.Customers)
-            {
-                if (item.SSN == ssn)
-                {
-                    int accountID = 1000 + item.Accounts.Count;
-                    item.Accounts.Add(new SavingsAccount(0.01, accountID));
-                    return accountID;
-                }
-            }
-            return -1;
+            int accountID = 1000 + customer.Accounts.Count;
+            customer.Accounts.Add(new SavingsAccount(0.01, accountID));
+            return accountID;
         }
 
-        public string GetAccount(long ssn, int accountID)
+        public static string GetAccount(Customer customer, long accountID)
         {
-            foreach (var customer in CustomerLogic.Customers)
+            for (int i = 0; i < customer.Accounts.Count; i++)
             {
-                if (customer.SSN == ssn)
+                if (customer.Accounts[i].AccountID == accountID)
                 {
-                    foreach (var account in customer.Accounts)
+                    if (customer.Accounts[i] is SavingsAccount)
                     {
-                        if (account.AccountID == accountID)
-                        {
-                            if (account is SavingsAccount)
-                            {
-                                return $"{account.AccountID}{account.Balance} Savings Account {account.Interest}";
-                            }
-                            else if (account is CreditAccount)
-                            {
-                                return $"{account.AccountID}{account.Balance} Credit Account {account.Interest}";
-                            }
-                        }
+                        return $"{customer.Accounts[i].AccountID}{customer.Accounts[i].Balance} Savings Account {customer.Accounts[i].Interest}";
                     }
-                }
-            }
-
-            //var a =
-            //    from customer in CustomerLogic.Customers
-            //    from account in customer.Accounts
-            //    where ssn == customer.SSN && account.AccountID == accountID
-            //    select account;
-            //            Account temp = selectedAccount.First();
-            return null;
-        }
-
-        public bool Deposit(long ssn, int accountID, decimal amount)
-        {
-            //var selectedAccount =
-            //    from customer in CustomerLogic.Customers
-            //    from account in customer.Accounts
-            //    where ssn == customer.SSN && account.AccountID == accountID
-            //    select account;
-
-            //Account temp = selectedAccount.First();
-
-            foreach (var customer in CustomerLogic.Customers)
-            {
-                if (customer.SSN == ssn)
-                {
-                    for (int i = 0; i < customer.Accounts.Count; i++)
+                    else if (customer.Accounts[i] is CreditAccount)
                     {
-                        if (customer.Accounts[i].AccountID == accountID)
-                        {
-                            customer.Accounts[i].Balance += amount;
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        public bool Withdraw(long ssn, int accountID, decimal amount)
-        {
-            foreach (var customer in CustomerLogic.Customers)
-            {
-                if (customer.SSN == ssn)
-                {
-                    for (int i = 0; i < customer.Accounts.Count; i++)
-                    {
-                        if (customer.Accounts[i].AccountID == accountID)
-                        {
-                            customer.Accounts[i].Balance -= amount;
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        public string CloseAccount(long ssn, int accountID)
-        {
-            foreach (var customer in CustomerLogic.Customers)
-            {
-                if (customer.SSN == ssn)
-                {
-                    for (int i = 0; i < customer.Accounts.Count; i++)
-                    {
-                        if (customer.Accounts[i].AccountID == accountID)
-                        {
-                            string deletedAccount = $"{customer.Accounts[i].Balance} {customer.Accounts[i].Interest}";
-                            customer.Accounts.RemoveAt(i);
-                            return deletedAccount;
-                        }
+                        return $"{customer.Accounts[i].AccountID}{customer.Accounts[i].Balance} Credit Account {customer.Accounts[i].Interest}";
                     }
                 }
             }
             return null;
         }
 
-        public int AddCreditAccount(long ssn)
+        public static bool Deposit(Account account, long accountID, decimal amount)
         {
-            foreach (var item in CustomerLogic.Customers)
+            if (account.AccountID == accountID)
             {
-                if (item.SSN == ssn)
+                account.Balance += amount;
+                return true;
+            }
+            return false;
+        }
+
+        public static bool Withdraw(Account account, decimal amount)
+        {
+            if (amount > account.Balance || account.Balance <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                account.Balance -= amount;
+                return true;
+            }
+        }
+
+        public static string CloseAccount(Customer customer, int accountID)
+        {
+
+            if (customer != null)
+            {
+                for (int i = 0; i < customer.Accounts.Count; i++)
                 {
-                    int accountID = 1000 + item.Accounts.Count;
-                    item.Accounts.Add(new CreditAccount(accountID));
-                    return accountID;
+                    if (customer.Accounts[i].AccountID == accountID)
+                    {
+                        string deletedAccount = $"{customer.Accounts[i].Balance} {customer.Accounts[i].Interest}";
+                        customer.Accounts.RemoveAt(i);
+                        return deletedAccount;
+                    }
                 }
             }
-            return -1;
+
+            return null;
         }
-        public List<string> GetTransactions(long ssn, int accountID)
+
+        public static int AddCreditAccount(Customer customer)
+        {
+            int accountID = 1000 + customer.Accounts.Count;
+            customer.Accounts.Add(new CreditAccount(accountID, 0));
+            return accountID;
+        }
+
+        public static List<string> GetTransactions(Account account)
         {
             List<string> allTransactions = new List<string>();
-            var transaction =
-                from customer in CustomerLogic.Customers
-                from account in customer.Accounts
-                where account.AccountID == accountID && customer.SSN == ssn
-                select account;
-            Account temp = transaction.First();
-            for (int i = 0; i < temp.Transactions.Count; i++)
+            foreach (var temp in account.Transactions)
             {
-                allTransactions.Add($"{temp.Transactions[i].Time.ToString()}, {temp.Transactions[i].TransactionType}, {temp.Transactions[i].Amount}, {temp.Transactions[i].NewBalance}");
+                allTransactions.Add($"{temp.Time.ToString()}, {temp.TransactionType}, {temp.Amount}, {temp.NewBalance}");
             }
             return allTransactions;
         }
