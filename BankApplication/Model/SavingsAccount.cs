@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankApplication
+namespace BankApplication.Model
 {
     class SavingsAccount : Account
     {
@@ -16,7 +16,5 @@ namespace BankApplication
             WithdrawFee = 0.02;
             FreeWithdraw = true;
         }
-
-
     }
 }

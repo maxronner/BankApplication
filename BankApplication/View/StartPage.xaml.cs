@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using BankApplication.Model;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,29 +20,11 @@ namespace BankApplication
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class printCustomer : Page
+    public sealed partial class StartPage : Page
     {
-        public printCustomer()
+        public StartPage()
         {
             this.InitializeComponent();
-        }
-
-        private void myWithdraw_Click(object sender, RoutedEventArgs e)
-        {
-            //bool res = AccountLogic.Withdraw(ssn, accountID, amount);
-            //if (res==true) { update balance}
-            //else {...
-           
-        }
-
-        private void myEditName_Click(object sender, RoutedEventArgs e)
-        {
-           myCustomerName.Text = myNewName.Text;
-        }
-
-        private void myCustomerName_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }
