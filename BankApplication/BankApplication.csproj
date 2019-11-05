@@ -124,6 +124,7 @@
     <Compile Include="CreditAccount.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerLogic.cs" />
+    <Compile Include="FileLogic.cs" />
     <Compile Include="homePage.xaml.cs">
       <DependentUpon>homePage.xaml</DependentUpon>
     </Compile>
