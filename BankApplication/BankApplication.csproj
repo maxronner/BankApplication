@@ -179,6 +179,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="printTransactions.xaml">
+    </Page>
     <Page Include="View\AppShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
