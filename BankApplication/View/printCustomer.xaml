@@ -30,24 +30,26 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="2" Background="#66FFFFFF" BorderThickness="2" BorderBrush="#66000000"/>
         <StackPanel Grid.Column="1" Grid.Row="4" Background="#66FFFFFF" BorderThickness="2" BorderBrush="#66000000"/>
 
 
         <GridView x:Name="myHeader" Grid.ColumnSpan="7" Grid.Row="0" VerticalAlignment="Stretch" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Background="#FFC5C2C2"/>
         <Button x:Name="myBack" Content="Back"  FontSize="20" Foreground="#FF484747" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <ListView Background="Black" Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="myCustomerName" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" TextAlignment="Center" BorderThickness="2" Text="Name:" TextWrapping="Wrap" FontSize="20" TextChanged="myCustomerName_TextChanged" Foreground="#FF484747" RenderTransformOrigin="0.499,0.569"/>
+        <TextBlock x:Name="myCustomerName" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" TextAlignment="Center" Text="Name:" TextWrapping="Wrap" FontSize="20" Foreground="#FF484747" RenderTransformOrigin="0.499,0.569" SelectionChanged="myCustomerName_SelectionChanged"/>
         <Button x:Name="myEditName" Content="Edit name" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="#66000000" Foreground="#FF484747" FontSize="20" Background="#337F7A7A"/>
+        <TextBox x:Name="myNewName" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch"  Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Opacity="0"/>
         <TextBlock x:Name="mySSN" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="4" Text="SSN: " TextWrapping="Wrap" VerticalAlignment="Stretch" FocusVisualPrimaryBrush="White" FontSize="20" Foreground="#FF484747"/>
         <TextBlock x:Name="myLogo" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Text="Newton Bank" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="115" Width="470" FontSize="72" Foreground="#FFE7DCDC" FontFamily="Frank Ruhl Hofshi"/>
         <Button x:Name="myDeposit" Grid.Column="4" Grid.Row="6" BorderThickness="2" Content="Deposit" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="20" Background="#337F7A7A" BorderBrush="#66000000" Foreground="#FF484747"/>
-        <Button x:Name="myWithdraw" BorderThickness="2" Content="Withdraw" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" Background="#337F7A7A" BorderBrush="#66000000" Foreground="#FF484747"/>
+        <Button x:Name="myWithdraw" BorderThickness="2" Content="Withdraw" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" Background="#337F7A7A" BorderBrush="#66000000" Foreground="#FF484747" Click="myWithdraw_Click"/>
         <Button x:Name="myAddAccount" BorderThickness="2" Content="Add Account" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="20" Background="#337F7A7A" BorderBrush="#66000000" FontFamily="Segoe UI" Foreground="#FF484747"/>
         <Button x:Name="myCloseAccount" BorderThickness="2" Content="Close Account" Grid.Column="3" Grid.Row="7" HorizontalAlignment="Stretch"  VerticalAlignment="Top"  FontSize="20" Background="#337F7A7A" BorderBrush="#66000000" Foreground="#FF484747"/>
         <Button Content="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" Foreground="{x:Null}" Background="{x:Null}"/>
         <Button x:Name="myTransactions" Content="View transactions" Grid.Column="4" Grid.Row="7" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="2" FontSize="20" Background="#337F7A7A" BorderBrush="#66000000" Foreground="#FF484747"/>
+        
 
-  
 
 
     </Grid>

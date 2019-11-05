@@ -9,16 +9,9 @@ namespace BankApplication
 {
     public class CustomerLogic
     {
-        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
-        public ObservableCollection<Customer> GetCustomers()
-        {
-            ObservableCollection<Customer> customerInformation = new ObservableCollection<Customer>();
-            foreach (var item in Customers)
-            {
-                //customerInformation.Add($"{item.SSN}\t{item.Name}");
-            }
-            return customerInformation;
-        }
+        private static ObservableCollection<Customer> customers = new ObservableCollection<Customer>();
+       
+        public ObservableCollection<Customer> Customers { get { return Customers; } }
         public bool AddCustomer(string name, long ssn)
         {
             if (Customers.Contains(new Customer(ssn, name)))
