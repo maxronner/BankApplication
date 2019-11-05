@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="BankApplication.AppShell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BankApplication"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid
+        x:Name="LayoutRoot"
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <NavigationView
+            x:Name="NavView"
+            OpenPaneLength="160"
+            AlwaysShowHeader="False"
+            IsSettingsVisible="True"
+            ItemInvoked="NavigationView_ItemInvoked"
+            BackRequested="NavView_BackRequested"
+            IsBackEnabled="{x:Bind AppFrame.CanGoBack, Mode=OneWay}">
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem
+                    x:Name="CustomerListMenuItem"
+                    Content="{x:Bind CustomerListLabel}" 
+                    ToolTipService.ToolTip="{x:Bind CustomerListLabel}"
+                    Icon="ContactInfo"/>
+                <NavigationViewItem
+                    x:Name="ExportMenuItem"
+                    Content="{x:Bind ExportMenuLabel}"
+                    ToolTipService.ToolTip="{x:Bind ExportMenuLabel}"
+                    Icon="SaveLocal"/>
+            </NavigationView.MenuItems>
+
+            <!-- In OnNavigatingToPage, we synchronize the selected item in the NavigationView with the current page. -->
+            <Frame
+                x:Name="frame"
+                Margin="20,0,0,0"
+                Navigating="OnNavigatingToPage">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition>
+                            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                <EntranceNavigationTransitionInfo />
+                            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                        </NavigationThemeTransition>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+
+        </NavigationView>
+    </Grid>
+</Page>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
-    class Transaction
+    public class Transaction
     {
         public long AccountID { get; set; }
         public DateTime Time { get; set; }

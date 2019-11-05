@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankApplication
+namespace BankApplication.Model
 {
     class AccountLogic
     {
-        public int AddSavingsAccount(long ssn) 
+        public int AddSavingsAccount(long ssn)
         {
             foreach (var item in CustomerLogic.Customers)
             {
@@ -23,7 +22,7 @@ namespace BankApplication
             return -1;
         }
 
-        public string GetAccount(long ssn, int accountID) 
+        public string GetAccount(long ssn, int accountID)
         {
             foreach (var customer in CustomerLogic.Customers)
             {
@@ -55,7 +54,7 @@ namespace BankApplication
             return null;
         }
 
-        public bool Deposit(long ssn, int accountID, decimal amount) 
+        public bool Deposit(long ssn, int accountID, decimal amount)
         {
             //var selectedAccount =
             //    from customer in CustomerLogic.Customers
@@ -81,7 +80,7 @@ namespace BankApplication
             }
             return false;
         }
-        public bool Withdraw(long ssn, int accountID, decimal amount) 
+        public bool Withdraw(long ssn, int accountID, decimal amount)
         {
             foreach (var customer in CustomerLogic.Customers)
             {
@@ -99,7 +98,7 @@ namespace BankApplication
             }
             return false;
         }
-        public string CloseAccount(long ssn, int accountID) 
+        public string CloseAccount(long ssn, int accountID)
         {
             foreach (var customer in CustomerLogic.Customers)
             {
@@ -132,7 +131,7 @@ namespace BankApplication
             }
             return -1;
         }
-        public List<string> GetTransactions(long ssn, int accountID) 
+        public List<string> GetTransactions(long ssn, int accountID)
         {
             List<string> allTransactions = new List<string>();
             var transaction =

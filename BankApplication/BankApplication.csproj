@@ -116,14 +116,18 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="AccountLogic.cs" />
+    <Compile Include="Model\AccountLogic.cs" />
+    <Compile Include="ViewModel\CustomerAddModel.cs" />
+    <Compile Include="View\AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Account.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreditAccount.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerLogic.cs" />
+    <Compile Include="Model\CreditAccount.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CustomerLogic.cs" />
     <Compile Include="FileLogic.cs" />
     <Compile Include="homePage.xaml.cs">
       <DependentUpon>homePage.xaml</DependentUpon>
@@ -138,8 +142,9 @@
       <DependentUpon>printTransactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SavingsAccount.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="Model\SavingsAccount.cs" />
+    <Compile Include="Model\Transaction.cs" />
+    <Compile Include="ViewModel\CustomerListModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -161,19 +166,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="homePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="printCustomer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="printTransactions.xaml">
+    <Page Include="View\AppShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,6 +179,7 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
