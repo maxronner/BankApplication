@@ -128,18 +128,18 @@
     <Compile Include="Model\CreditAccount.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\CustomerLogic.cs" />
-    <Compile Include="FileLogic.cs" />
-    <Compile Include="View\homePage.xaml.cs">
-      <DependentUpon>homePage.xaml</DependentUpon>
+    <Compile Include="Model\FileLogic.cs" />
+    <Compile Include="View\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\CustomerListPage.xaml.cs">
+      <DependentUpon>CustomerListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\printCustomer.xaml.cs">
-      <DependentUpon>printCustomer.xaml</DependentUpon>
+    <Compile Include="View\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\printTransactions.xaml.cs">
-      <DependentUpon>printTransactions.xaml</DependentUpon>
+    <Compile Include="View\TransactionsPage.xaml.cs">
+      <DependentUpon>TransactionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\SavingsAccount.cs" />
@@ -166,19 +166,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\homePage.xaml">
+    <Page Include="View\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="View\CustomerListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\printCustomer.xaml">
+    <Page Include="View\AccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\printTransactions.xaml">
+    <Page Include="View\TransactionsPage.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AppShell.xaml">
       <SubType>Designer</SubType>

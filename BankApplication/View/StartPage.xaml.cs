@@ -20,16 +20,11 @@ namespace BankApplication
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class printCustomer : Page
+    public sealed partial class StartPage : Page
     {
-        public printCustomer()
+        public StartPage()
         {
             this.InitializeComponent();
-        }
-
-        private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
