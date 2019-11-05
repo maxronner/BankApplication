@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace BankApplication
+namespace BankApplication.Model
 {
-    class FileLogic
+    public class FileLogic
     {
         public void PrintCustomerInfo()
         {
