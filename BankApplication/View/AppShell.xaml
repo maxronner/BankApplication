@@ -28,11 +28,6 @@
                     ToolTipService.ToolTip="{x:Bind CustomerListLabel}"
                     Icon="ContactInfo"/>
                 <NavigationViewItem
-                    x:Name="AccountListMenuItem"
-                    Content="{x:Bind AccountListLabel}" 
-                    ToolTipService.ToolTip="{x:Bind AccountListLabel}"
-                    Icon="Document"/>
-                <NavigationViewItem
                     x:Name="ExportMenuItem"
                     Content="{x:Bind ExportMenuLabel}"
                     ToolTipService.ToolTip="{x:Bind ExportMenuLabel}"
