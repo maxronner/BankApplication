@@ -5,20 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankApplication
+namespace BankApplication.Model
 {
     public class CustomerLogic
     {
         public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
-        public ObservableCollection<Customer> GetCustomers()
-        {
-            ObservableCollection<Customer> customerInformation = new ObservableCollection<Customer>();
-            foreach (var item in Customers)
-            {
-                //customerInformation.Add($"{item.SSN}\t{item.Name}");
-            }
-            return customerInformation;
-        }
         public bool AddCustomer(string name, long ssn)
         {
             if (Customers.Contains(new Customer(ssn, name)))

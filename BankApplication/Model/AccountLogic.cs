@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Model
 {
-    class AccountLogic
+    public class AccountLogic
     {
         public int AddSavingsAccount(long ssn)
         {
