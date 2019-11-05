@@ -128,6 +128,19 @@
     <Compile Include="Model\CreditAccount.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\CustomerLogic.cs" />
+    <Compile Include="FileLogic.cs" />
+    <Compile Include="homePage.xaml.cs">
+      <DependentUpon>homePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="printCustomer.xaml.cs">
+      <DependentUpon>printCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="printTransactions.xaml.cs">
+      <DependentUpon>printTransactions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\SavingsAccount.cs" />
     <Compile Include="Model\Transaction.cs" />
