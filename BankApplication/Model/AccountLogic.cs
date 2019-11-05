@@ -39,6 +39,7 @@ namespace BankApplication.Model
             if (account.AccountID == accountID)
             {
                 account.Balance += amount;
+                account.Transactions.Add(new Transaction(accountID, false, amount, account.Balance));
                 return true;
             }
             return false;
@@ -46,20 +47,18 @@ namespace BankApplication.Model
 
         public static bool Withdraw(Account account, decimal amount)
         {
-            if (amount > account.Balance || account.Balance <= 0)
-            {
-                return false;
-            }
-            else
+            //Fixa så att vi kan göra ett minsta/största uttagsbelopp?
+            if (account.Balance >= amount || account.Balance > 0)
             {
                 account.Balance -= amount;
+                account.Transactions.Add(new Transaction(account.AccountID, true, amount, account.Balance));
                 return true;
             }
+            return false;
         }
 
         public static string CloseAccount(Customer customer, int accountID)
         {
-
             if (customer != null)
             {
                 for (int i = 0; i < customer.Accounts.Count; i++)
@@ -75,7 +74,6 @@ namespace BankApplication.Model
 
             return null;
         }
-
         public static int AddCreditAccount(Customer customer)
         {
             int accountID = 1000 + customer.Accounts.Count;
