@@ -129,16 +129,16 @@
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\CustomerLogic.cs" />
     <Compile Include="FileLogic.cs" />
-    <Compile Include="homePage.xaml.cs">
+    <Compile Include="View\homePage.xaml.cs">
       <DependentUpon>homePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="printCustomer.xaml.cs">
+    <Compile Include="View\printCustomer.xaml.cs">
       <DependentUpon>printCustomer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="printTransactions.xaml.cs">
+    <Compile Include="View\printTransactions.xaml.cs">
       <DependentUpon>printTransactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,19 +166,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="homePage.xaml">
+    <Page Include="View\homePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="printCustomer.xaml">
+    <Page Include="View\printCustomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="printTransactions.xaml">
+    <Page Include="View\printTransactions.xaml">
     </Page>
     <Page Include="View\AppShell.xaml">
       <SubType>Designer</SubType>
