@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankApplication
+namespace BankApplication.Model
 {
-    class CreditAccount : Account
+    public class CreditAccount : Account
     {
         private double debtInterest;
         private long creditLimit;

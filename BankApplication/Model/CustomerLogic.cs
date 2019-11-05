@@ -5,21 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankApplication
+namespace BankApplication.Model
 {
-    public class CustomerLogic
+    public static class CustomerLogic
     {
         public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
-        public ObservableCollection<Customer> GetCustomers()
-        {
-            ObservableCollection<Customer> customerInformation = new ObservableCollection<Customer>();
-            foreach (var item in Customers)
-            {
-                //customerInformation.Add($"{item.SSN}\t{item.Name}");
-            }
-            return customerInformation;
-        }
-        public bool AddCustomer(string name, long ssn)
+        public static bool AddCustomer(string name, long ssn)
         {
             if (Customers.Contains(new Customer(ssn, name)))
             {
@@ -31,7 +22,7 @@ namespace BankApplication
                 return true;
             }
         }
-        public List<string> GetCustomer(long ssn) //incomplete
+        public static List<string> GetCustomer(long ssn) //incomplete
         {
             List<string> customerInfo = new List<string>();
 
@@ -61,7 +52,7 @@ namespace BankApplication
             }
             return customerInfo;
         }
-        public bool ChangeCustomerName(string name, long ssn)
+        public static bool ChangeCustomerName(string name, long ssn)
         {
             for (int i = 0; i < Customers.Count; i++)
             {
@@ -73,7 +64,7 @@ namespace BankApplication
             }
             return false;
         }
-        public List<string> RemoveCustomer(long ssn)
+        public static List<string> RemoveCustomer(long ssn)
         {
             List<string> removedCustomer = new List<string>();
             for (int i = 0; i < Customers.Count; i++)
@@ -89,7 +80,7 @@ namespace BankApplication
             }
             return removedCustomer;
         }
-        public void SortCustomers()
+        public static void SortCustomers()
         {
             object temp = Customers;
             List<Customer> customers = temp as List<Customer>;
