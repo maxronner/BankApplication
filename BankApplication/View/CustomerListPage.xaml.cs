@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,6 +27,7 @@ namespace BankApplication
         {
             this.InitializeComponent();
         }
+        public ObservableCollection<Customer> customers { get { return CustomerLogic.Customers; } }
 
         private void myHome_Click(object sender, RoutedEventArgs e)
         {
@@ -34,6 +36,15 @@ namespace BankApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void myRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = customerList.SelectedItem;
+
+            CustomerLogic.RemoveCustomer((Customer)selected);
+            
 
         }
     }
