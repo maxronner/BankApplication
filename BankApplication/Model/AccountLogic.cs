@@ -39,6 +39,7 @@ namespace BankApplication
             if (account.AccountID == accountID)
             {
                 account.Balance += amount;
+                account.Transactions.Add(new Transaction(accountID, false, amount, account.Balance));
                 return true;
             }
             return false;
@@ -46,15 +47,13 @@ namespace BankApplication
 
         public static bool Withdraw(Account account, decimal amount)
         {
-            if (amount > account.Balance || account.Balance <= 0)
-            {
-                return false;
-            }
-            else
+            if (account.Balance >= amount || account.Balance > 0)
             {
                 account.Balance -= amount;
+                account.Transactions.Add(new Transaction(account.AccountID, true, amount, account.Balance));
                 return true;
             }
+            return false;
         }
 
         public static string CloseAccount(Customer customer, int accountID)

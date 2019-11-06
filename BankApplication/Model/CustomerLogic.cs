@@ -9,7 +9,15 @@ namespace BankApplication
 {
     public static class CustomerLogic
     {
-        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>();
+        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer> 
+            {
+            new Customer(1231231231, "HWJ"),
+            new Customer(1231231231, "UWE"),
+            new Customer(1231231231, "HWJ"),
+            new Customer(1231231231, "HWJ"),
+            new Customer(1231231231, "HWJ")
+            };
+       
         public static bool AddCustomer(string name, long ssn)
         {
             if (Customers.Contains(new Customer(ssn, name)))
@@ -64,20 +72,31 @@ namespace BankApplication
             }
             return false;
         }
-        public static List<string> RemoveCustomer(long ssn)
+        public static List<string> RemoveCustomer(Customer customer)
         {
+            //List<string> removedCustomer = new List<string>();
+            //for (int i = 0; i < Customers.Count; i++)
+            //{
+            //    if (Customers[i].SSN == ssn)
+            //    {
+            //        foreach (var item in Customers[i].Accounts)
+            //        {
+            //            removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
+
+            //        }
+            //    }
+            //}
+            //return removedCustomer;
             List<string> removedCustomer = new List<string>();
-            for (int i = 0; i < Customers.Count; i++)
+
+            if (customer.Accounts != null)
             {
-                if (Customers[i].SSN == ssn)
+                foreach (var item in customer.Accounts)
                 {
-                    foreach (var item in Customers[i].Accounts)
-                    {
-                        removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
-                        
-                    }
+                    removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
                 }
             }
+            CustomerLogic.Customers.Remove(customer);
             return removedCustomer;
         }
         public static void SortCustomers()
