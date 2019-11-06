@@ -116,29 +116,30 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="AccountLogic.cs" />
+    <Compile Include="Model\AccountLogic.cs" />
+    <Compile Include="Model\Account.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreditAccount.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerLogic.cs" />
-    <Compile Include="homePage.xaml.cs">
-      <DependentUpon>homePage.xaml</DependentUpon>
+    <Compile Include="Model\CreditAccount.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CustomerLogic.cs" />
+    <Compile Include="Model\FileLogic.cs" />
+    <Compile Include="View\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\CustomerListPage.xaml.cs">
+      <DependentUpon>CustomerListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="printCustomer.xaml.cs">
-      <DependentUpon>printCustomer.xaml</DependentUpon>
+    <Compile Include="View\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="printTransactions.xaml.cs">
-      <DependentUpon>printTransactions.xaml</DependentUpon>
+    <Compile Include="View\TransactionsPage.xaml.cs">
+      <DependentUpon>TransactionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SavingsAccount.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="Model\SavingsAccount.cs" />
+    <Compile Include="Model\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -160,21 +161,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="homePage.xaml">
+    <Page Include="View\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="View\CustomerListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="printCustomer.xaml">
+    <Page Include="View\AccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="printTransactions.xaml">
+    <Page Include="View\TransactionsPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +185,7 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
