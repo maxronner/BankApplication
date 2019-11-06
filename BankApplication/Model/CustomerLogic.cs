@@ -11,11 +11,12 @@ namespace BankApplication
     {
         public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer> 
             {
-            new Customer(1231231231, "HWJ"),
-            new Customer(1231231231, "UWE"),
-            new Customer(1231231231, "HWJ"),
-            new Customer(1231231231, "HWJ"),
-            new Customer(1231231231, "HWJ")
+            new Customer(8409039567, "Anders"),
+            new Customer(7812230654, "Olle"),
+            new Customer(0111161209, "Eddy"),
+            new Customer(9204021234, "Robin"),
+            new Customer(2106228532, "Gunborg")
+
             };
        
         public static bool AddCustomer(string name, long ssn)
