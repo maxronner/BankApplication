@@ -21,7 +21,10 @@ namespace BankApplication
             Interest = interest;
             AccountID = accountId;
         }
-
+        public string Summary
+        {
+            get { return $"{AccountID}\t{Balance}\t{Interest} {typeof(Account).ToString()}"; }
+        }
         //to string
     }
 }
