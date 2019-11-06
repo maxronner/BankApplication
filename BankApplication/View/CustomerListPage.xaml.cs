@@ -22,10 +22,15 @@ namespace BankApplication
     /// </summary>
     public sealed partial class CustomerListPage : Page
     {
+        
         public CustomerListPage()
         {
             this.InitializeComponent();
+            
+
         }
+        
+       
 
         private void myHome_Click(object sender, RoutedEventArgs e)
         {

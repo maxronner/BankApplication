@@ -26,5 +26,15 @@ namespace BankApplication
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AccountPage));
+        }
+
+        private void myBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.GoBack();
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace BankApplication.Model
+namespace BankApplication
 {
     public class FileLogic
     {

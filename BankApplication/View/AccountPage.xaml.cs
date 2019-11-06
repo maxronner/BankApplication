@@ -26,8 +26,13 @@ namespace BankApplication
         {
             this.InitializeComponent();
         }
-
+        
         private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void myAddAccount_Click(object sender, RoutedEventArgs e)
         {
 
         }
