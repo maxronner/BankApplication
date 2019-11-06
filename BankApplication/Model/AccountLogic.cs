@@ -10,11 +10,26 @@ namespace BankApplication
     {
         public static int AddSavingsAccount(Customer customer)
         {
-            int accountID = 1000 + customer.Accounts.Count;
-            customer.Accounts.Add(new SavingsAccount(0.01, accountID));
-            return accountID;
+            if (customer != null)
+            {
+                customer.Accounts.Add(new SavingsAccount(0.01));
+                var account = customer.Accounts.Last();
+                return account.AccountID;
+            }
+            return -1;
         }
-
+        public static int NewAccountID()
+        {
+            int availableAccountID = 0;
+            foreach (var customer in CustomerLogic.Customers)
+            {
+                foreach (var account in customer.Accounts)
+                {
+                    if (account.AccountID >= availableAccountID) availableAccountID = account.AccountID + 1;
+                }
+            }
+            return availableAccountID;
+        }
         public static string GetAccount(Customer customer, long accountID)
         {
             for (int i = 0; i < customer.Accounts.Count; i++)
@@ -77,9 +92,13 @@ namespace BankApplication
 
         public static int AddCreditAccount(Customer customer)
         {
-            int accountID = 1000 + customer.Accounts.Count;
-            customer.Accounts.Add(new CreditAccount(accountID, 0));
-            return accountID;
+            if (customer != null)
+            {
+                customer.Accounts.Add(new CreditAccount());
+                var account = customer.Accounts.Last();                
+                return account.AccountID;
+            }
+            return -1;
         }
 
         public static List<string> GetTransactions(Account account)
