@@ -36,7 +36,8 @@ namespace BankApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var selected = customerList.SelectedItem;
+            this.Frame.Navigate(typeof(AccountPage), selected);
         }
 
         private void myRemove_Click(object sender, RoutedEventArgs e)

@@ -22,9 +22,14 @@ namespace BankApplication
     /// </summary>
     public sealed partial class AccountPage : Page
     {
+        List<Account> test = new List<Account>()
+            {
+                new SavingsAccount(0.05, 1001)
+        };
         public AccountPage()
         {
             this.InitializeComponent();
+         //  this.mySSN.Text=
         }
 
         private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
@@ -40,6 +45,15 @@ namespace BankApplication
         private void myBack_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //base.OnNavigatedTo(e);
+            var param = (Customer)e.Parameter;
+            this.mySSN.Text = param.SSN.ToString();
+            this.myCustomerName.Text = param.Name;
+
         }
     }
 }
