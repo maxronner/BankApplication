@@ -31,5 +31,15 @@ namespace BankApplication
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(StartPage));
+        }
+
+        private void myBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
     }
 }

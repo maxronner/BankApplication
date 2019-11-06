@@ -29,7 +29,17 @@ namespace BankApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            this.Frame.Navigate(typeof(StartPage));
+        }
+
+        private void myStartButton_Click(object sender, RoutedEventArgs e)
+        {
             this.Frame.Navigate(typeof(CustomerListPage));
+        }
+
+        private void myExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }
