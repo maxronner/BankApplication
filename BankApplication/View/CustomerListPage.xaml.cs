@@ -29,22 +29,34 @@ namespace BankApplication
         }
         public ObservableCollection<Customer> customers { get { return CustomerLogic.Customers; } }
 
-        private void myHome_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void myRemove_Click(object sender, RoutedEventArgs e)
         {
             var selected = customerList.SelectedItem;
 
             CustomerLogic.RemoveCustomer((Customer)selected);
-            
+        }
+
+        private void myHome_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(StartPage));
+        }
+
+        private void myBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
+
+        private void myView_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = customerList.SelectedItem;
+            this.Frame.Navigate(typeof(AccountPage));
+        }
+
+        private void mySearch_Click(object sender, RoutedEventArgs e)
+        {
+            var ssn = enterSSN;
+
+
 
         }
     }
