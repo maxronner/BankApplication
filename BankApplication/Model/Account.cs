@@ -9,17 +9,18 @@ namespace BankApplication
 {
     public abstract class Account
     {
+        private int accountID;
+        
         public ObservableCollection<Transaction> Transactions { get; set; } = new ObservableCollection<Transaction>();
-
         public decimal Balance { get; set; }
         public double Interest { get; set; }
-        public long AccountID { get; set; } //MÅSTE VARA UNIKT
+        public int AccountID { get { return accountID; } private set { AccountLogic.NewAccountID(); } } //MÅSTE VARA UNIKT
 
-        public Account(long balance, double interest, long accountId)
+        public Account(long balance, double interest)
         {
             Balance = balance;
             Interest = interest;
-            AccountID = accountId;
+            accountID = AccountID;
         }
 
         //to string
