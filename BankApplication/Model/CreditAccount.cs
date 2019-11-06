@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankApplication.Model
+namespace BankApplication
 {
     public class CreditAccount : Account
     {
