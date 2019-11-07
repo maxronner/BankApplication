@@ -71,6 +71,8 @@ namespace BankApplication
 
         private void myEditName_Click(object sender, RoutedEventArgs e)
         {
+            string name = myCustomerName.Text;
+            CustomerLogic.ChangeCustomerName(customer, name);
 
         }
 
