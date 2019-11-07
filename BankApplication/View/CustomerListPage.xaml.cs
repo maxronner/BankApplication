@@ -34,11 +34,7 @@ namespace BankApplication
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var selected = customerList.SelectedItem;
-            this.Frame.Navigate(typeof(AccountPage), selected);
-        }
+       
 
         private void myRemove_Click(object sender, RoutedEventArgs e)
         {
@@ -66,6 +62,26 @@ namespace BankApplication
         private void mySearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void myView_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = customerList.SelectedItem;
+            this.Frame.Navigate(typeof(AccountPage), selected);
+        }
+
+        private void addAccount_Click(object sender, RoutedEventArgs e)
+        {
+            string name = "";
+            name = this.accountNameBox.Text;
+            long ssn;
+            ssn = Convert.ToInt64(this.accountSSNBox.Text);
+            CustomerLogic.AddCustomer(name, ssn);
         }
     }
 }
