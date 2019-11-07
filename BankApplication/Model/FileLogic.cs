@@ -9,11 +9,11 @@ namespace BankApplication
 {
     public class FileLogic
     {
-        public void PrintCustomerInfo()
+        public void PrintCustomersInfo()
         {
             //Printa för- och efternamn samt personnummer till fil.
 
-            using (StreamWriter writer = new StreamWriter("CustomerInformation.txt"))
+            using (StreamWriter writer = new StreamWriter(@"C:\CustomerInformation.txt"))
             {
                 foreach (var item in CustomerLogic.Customers)
                 {

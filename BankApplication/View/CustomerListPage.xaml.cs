@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -45,17 +46,21 @@ namespace BankApplication
 
         }
 
-        private void mySearch_Click(object sender, RoutedEventArgs e)
+        private async void mySearch_Click(object sender, RoutedEventArgs e)
         {
-            long ssn = Convert.ToInt64(mySearchBox.Text);
-            
+            var input = mySearchBox.Text;
+            long.TryParse(input, out long result);
+            //var message = new MessageDialog("Type a valid name/ssn!");
+            //await message.ShowAsync();
+
             for (int i = 0; i < customers.Count; i++)
             {
-                if (ssn == customers[i].SSN)
+                if (result == customers[i].SSN || input == customers[i].Name)
                 {
                     var selected = customers[i];
                     Frame.Navigate(typeof(AccountPage), selected);
                 }
+
             }
         }
 
@@ -75,7 +80,16 @@ namespace BankApplication
             this.Frame.Navigate(typeof(AccountPage), selected);
         }
 
-        private void addAccount_Click(object sender, RoutedEventArgs e)
+    
+
+        private void printCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            new FileLogic().PrintCustomersInfo();
+
+        }
+
+        private void addCustomer_Click(object sender, RoutedEventArgs e)
         {
             string name = "";
             name = this.accountNameBox.Text;

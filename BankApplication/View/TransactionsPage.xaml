@@ -33,7 +33,7 @@
             <GridView x:Name="myHeader" Grid.ColumnSpan="7" Grid.Row="0" VerticalAlignment="Stretch" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Background="#FFC5C2C2"/>
         <Button x:Name="myBack" Content="Back"  FontSize="20" Foreground="#FF484747" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="myBack_Click"/>
         <TextBlock x:Name="myLogo" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Text="Newton Bank" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="115" Width="470" FontSize="72" Foreground="#FFE7DCDC" FontFamily="Frank Ruhl Hofshi"/>
-        <Button Content="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" Foreground="{x:Null}" Background="{x:Null}" Click="Button_Click"/>
+        <Button x:Name="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" Opacity="0" Click="Button_Click"/>
         <ListView x:Name="myTransaction" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="4" ItemsSource="{x:Bind testTrans}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Transaction">
