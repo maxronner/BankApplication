@@ -36,7 +36,7 @@ namespace BankApplication
 
                 foreach (var item in account.Transactions)
                 {
-                    writer.WriteLine("{0} {1} Insättning/Uttag: {2} Saldo: {3}", item.Time.Date, item.Time.TimeOfDay, item.Amount, item.NewBalance);
+                    writer.WriteLine("{0} {1} Insättning/Uttag: {2} Saldo: {3}", item.Time, item.Amount, item.NewBalance);
                 }
                 //Hänvisa till listan i Transactions.
             }

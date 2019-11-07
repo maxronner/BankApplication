@@ -33,5 +33,11 @@ namespace BankApplication
             Customer customer = (Customer)obj;
             return this.Name.CompareTo(customer.Name);
         }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+            Customer c = (Customer)obj;
+        }
     }
 }
