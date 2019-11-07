@@ -20,7 +20,7 @@ namespace BankApplication
         }
         public static int NewAccountID()
         {
-            int availableAccountID = 0;
+            int availableAccountID = 1000;
             foreach (var customer in CustomerLogic.Customers)
             {
                 foreach (var account in customer.Accounts)
@@ -49,12 +49,12 @@ namespace BankApplication
             return null;
         }
 
-        public static bool Deposit(Account account, long accountID, decimal amount)
+        public static bool Deposit(Account account, decimal amount)
         {
-            if (account.AccountID == accountID)
+            if (account != null)
             {
                 account.Balance += amount;
-                account.Transactions.Add(new Transaction(accountID, false, amount, account.Balance));
+                account.Transactions.Add(new Transaction(account.AccountID, false, amount, account.Balance));
                 return true;
             }
             return false;

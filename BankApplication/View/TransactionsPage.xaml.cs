@@ -22,12 +22,7 @@ namespace BankApplication
     /// </summary>
     public sealed partial class TransactionsPage : Page
     {
-
-        List<Transaction> testTrans = new List<Transaction>()
-        {
-            new Transaction(10001, true, 500, 10000)
-        };
-
+        private Account account;
         public TransactionsPage()
         {
             this.InitializeComponent();
@@ -48,7 +43,7 @@ namespace BankApplication
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //base.OnNavigatedTo(e);
-            var param = (Account)e.Parameter;
+            account = (Account)e.Parameter;
             //behandla data från mottaget objekt 
         }
 
