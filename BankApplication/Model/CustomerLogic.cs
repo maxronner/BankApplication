@@ -31,63 +31,20 @@ namespace BankApplication
                 return true;
             }
         }
-        public static List<string> GetCustomer(long ssn) //incomplete
+        public static bool ChangeCustomerName(Customer customer, string name)
         {
-            List<string> customerInfo = new List<string>();
-
-            foreach (var item in Customers)
+            try
             {
-                if (item.SSN == ssn)
-                {
-                    customerInfo.Add(item.Name);
-                    customerInfo.Add(item.SSN.ToString());
-                    foreach (var account in item.Accounts)
-                    {
-                        customerInfo.Add(account.AccountID.ToString());
-                        customerInfo.Add(account.Balance.ToString());
-                        customerInfo.Add(account.Interest.ToString());
-                        if (account is CreditAccount tempCredit)
-                        {
-                            customerInfo.Add(tempCredit.CreditLimit.ToString());
-                            customerInfo.Add(tempCredit.DebtInterest.ToString());
-                        }
-                        else if (account is SavingsAccount tempSavings)
-                        {
-                            customerInfo.Add(tempSavings.FreeWithdraw.ToString());
-                            customerInfo.Add(tempSavings.WithdrawFee.ToString());
-                        }
-                    }
-                }
+                customer.Name = name;
             }
-            return customerInfo;
-        }
-        public static bool ChangeCustomerName(string name, long ssn)
-        {
-            for (int i = 0; i < Customers.Count; i++)
+            catch (Exception)
             {
-                if (Customers[i].SSN == ssn)
-                {
-                    Customers[i].Name = name;
-                    return true;
-                }
-            }
-            return false;
+                return false;
+            }            
+            return true;
         }
         public static List<string> RemoveCustomer(Customer customer)
         {
-            //List<string> removedCustomer = new List<string>();
-            //for (int i = 0; i < Customers.Count; i++)
-            //{
-            //    if (Customers[i].SSN == ssn)
-            //    {
-            //        foreach (var item in Customers[i].Accounts)
-            //        {
-            //            removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
-
-            //        }
-            //    }
-            //}
-            //return removedCustomer;
             List<string> removedCustomer = new List<string>();
 
             if (customer.Accounts != null)
@@ -97,7 +54,7 @@ namespace BankApplication
                     removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
                 }
             }
-            CustomerLogic.Customers.Remove(customer);
+            Customers.Remove(customer);
             return removedCustomer;
         }
         public static void SortCustomers()
