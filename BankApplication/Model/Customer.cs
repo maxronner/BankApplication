@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +16,13 @@ namespace BankApplication
             get { return ssn; }
             set { if (value.ToString().Length != 10) ssn = 0; else ssn = value; }
         }
-        public List<Account> Accounts { get; set; }
+        public  ObservableCollection<Account> Accounts { get; set; }
 
-        public Customer(long ssn, string name, List<Account> account = null)
+        public Customer(long ssn, string name)
         {
             SSN = ssn;
             Name = name;
-            Accounts = account;
+            Accounts = new ObservableCollection<Account>();
         }
         public string Summary
         {
@@ -31,12 +32,6 @@ namespace BankApplication
         {
             Customer customer = (Customer)obj;
             return this.Name.CompareTo(customer.Name);
-        }
-        public override bool Equals(Object obj)
-        {
-            if (obj == null || GetType() != obj.GetType())
-                return false;
-            Customer c = (Customer)obj;
         }
     }
 }

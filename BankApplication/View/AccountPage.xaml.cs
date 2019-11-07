@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,14 +23,21 @@ namespace BankApplication
     /// </summary>
     public sealed partial class AccountPage : Page
     {
-        List<Account> test = new List<Account>()
-            {
-                new SavingsAccount(0.05, 1001)
-        };
+        private Customer customer;
+        private ObservableCollection<Account> accounts { get { return customer.Accounts; } set { customer.Accounts = value; } }
+
         public AccountPage()
         {
             this.InitializeComponent();
-         //  this.mySSN.Text=
+            accounts = new ObservableCollection<Account>
+            {
+                new CreditAccount(),
+                new CreditAccount(),
+                new CreditAccount(),
+                new CreditAccount(),
+                new CreditAccount()
+            };
+            //  this.mySSN.Text=
         }
 
         private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
@@ -50,7 +58,8 @@ namespace BankApplication
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //base.OnNavigatedTo(e);
-            var param = (Customer)e.Parameter;
+            Customer param = (Customer)e.Parameter;
+            customer = param;
             this.mySSN.Text = param.SSN.ToString();
             this.myCustomerName.Text = param.Name;
 
@@ -63,6 +72,18 @@ namespace BankApplication
         }
 
         private void customerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void addSavings_Click(object sender, RoutedEventArgs e)
+        {
+            sender.ToString();
+           
+          
+        }
+
+        private void addSavings_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
