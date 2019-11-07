@@ -22,9 +22,16 @@ namespace BankApplication
     /// </summary>
     public sealed partial class TransactionsPage : Page
     {
+
+        List<Transaction> testTrans = new List<Transaction>()
+        {
+            new Transaction(10001, true, 500, 10000)
+        };
+
         public TransactionsPage()
         {
             this.InitializeComponent();
+
         }
 
         private void myBack_Click(object sender, RoutedEventArgs e)
@@ -35,6 +42,19 @@ namespace BankApplication
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StartPage));
+        }
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //base.OnNavigatedTo(e);
+            var param = (Account)e.Parameter;
+            //behandla data från mottaget objekt 
+        }
+
+        private void myPrint_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

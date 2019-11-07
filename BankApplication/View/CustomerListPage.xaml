@@ -44,7 +44,8 @@
         </ListView>
         <Button x:Name="myView" Content="View" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="#FF484747" Click="Button_Click" FontSize="20" BorderBrush="#FF737373"/>
         <Button x:Name="myRemove" Content="Remove" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="myRemove_Click"/>
-        <Button x:Name="mySearch" Content="Search" Grid.Row="6" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373"/>
+        <Button x:Name="mySearch" Content="Search" Grid.Row="6" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="mySearch_Click" Margin="0,0,0,35"/>
+        <TextBox x:Name="mySearchBox"  Grid.Column="4" HorizontalAlignment="Stretch" Grid.Row="6" Text="" TextWrapping="Wrap" VerticalAlignment="bottom" TextChanged="mySearchBox_TextChanged"/>
     </Grid>
 
 </Page>
