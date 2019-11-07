@@ -25,11 +25,19 @@ namespace BankApplication
     {
         private Customer customer;
         private ObservableCollection<Account> accounts { get { return customer.Accounts; } set { customer.Accounts = value; } }
+
         public AccountPage()
         {
             this.InitializeComponent();
-            accounts.Add(new CreditAccount());
-         //  this.mySSN.Text=
+            accounts = new ObservableCollection<Account>
+            {
+                new CreditAccount(),
+                new CreditAccount(),
+                new CreditAccount(),
+                new CreditAccount(),
+                new CreditAccount()
+            };
+            //  this.mySSN.Text=
         }
 
         private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
@@ -50,7 +58,7 @@ namespace BankApplication
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //base.OnNavigatedTo(e);
-            var param = (Customer)e.Parameter;
+            Customer param = (Customer)e.Parameter;
             customer = param;
             this.mySSN.Text = param.SSN.ToString();
             this.myCustomerName.Text = param.Name;
