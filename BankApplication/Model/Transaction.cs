@@ -9,7 +9,8 @@ namespace BankApplication
     public class Transaction
     {
         public long AccountID { get; set; }
-        public DateTime Time { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
         public bool TransactionType { get; set; }
         public decimal Amount { get; set; }
         public decimal NewBalance { get; set; }
@@ -20,13 +21,12 @@ namespace BankApplication
             TransactionType = transactionType;
             Amount = amount;
             NewBalance = newBalance;
-            Time = new DateTime();
-
+            Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
         }
         public string Summary
         {
-            get { return $"{Time.Date}\t{Time.Hour}\t{AccountID}\t{TransactionType}\t{Amount}\t{NewBalance}"; }
+            get { return $"{Time}\t{AccountID}\t{TransactionType}\t{Amount}\t{NewBalance}"; }
         }
     }
 }
