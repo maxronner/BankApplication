@@ -46,7 +46,7 @@ namespace BankApplication
 
         }
 
-        private async void mySearch_Click(object sender, RoutedEventArgs e)
+        private void mySearch_Click(object sender, RoutedEventArgs e)
         {
             var input = mySearchBox.Text;
             long.TryParse(input, out long result);
@@ -79,8 +79,6 @@ namespace BankApplication
             var selected = customerList.SelectedItem;
             this.Frame.Navigate(typeof(AccountPage), selected);
         }
-
-    
 
         private void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {

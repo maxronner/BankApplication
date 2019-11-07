@@ -24,19 +24,9 @@ namespace BankApplication
     public sealed partial class AccountPage : Page
     {
         private Customer customer;
-        private ObservableCollection<Account> accounts { get { return customer.Accounts; } set { customer.Accounts = value; } }
-
         public AccountPage()
         {
             this.InitializeComponent();
-            accounts = new ObservableCollection<Account>
-            {
-                new CreditAccount(),
-                new CreditAccount(),
-                new CreditAccount(),
-                new CreditAccount(),
-                new CreditAccount()
-            };
             //  this.mySSN.Text=
         }
 
@@ -58,16 +48,14 @@ namespace BankApplication
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //base.OnNavigatedTo(e);
-            Customer param = (Customer)e.Parameter;
-            customer = param;
-            this.mySSN.Text = param.SSN.ToString();
-            this.myCustomerName.Text = param.Name;
-
+            customer = (Customer)e.Parameter;
+            this.mySSN.Text = customer.SSN.ToString();
+            this.myCustomerName.Text = customer.Name;
         }
 
         private void myTransactions_Click(object sender, RoutedEventArgs e)
         {
-            var selected = accountList.SelectedItem;
+            object selected = accountList.SelectedItem;
             this.Frame.Navigate(typeof(TransactionsPage), selected);
         }
 
@@ -78,14 +66,29 @@ namespace BankApplication
 
         private void addSavings_Click(object sender, RoutedEventArgs e)
         {
-            sender.ToString();
-           
-          
+            AccountLogic.AddSavingsAccount(customer);
         }
 
-        private void addSavings_Click_1(object sender, RoutedEventArgs e)
+        private void myEditName_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void addCredit_Click(object sender, RoutedEventArgs e)
+        {
+            AccountLogic.AddCreditAccount(customer);
+        }
+
+        private void myWithdraw_Click(object sender, RoutedEventArgs e)
+        {
+            decimal.TryParse(withdrawBox.Text, out decimal amount);
+            AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
+        }
+
+        private void myDeposit_Click(object sender, RoutedEventArgs e)
+        {
+            decimal.TryParse(depositBox.Text, out decimal amount);
+            AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);
         }
     }
 }

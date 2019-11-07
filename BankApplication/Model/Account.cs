@@ -9,22 +9,20 @@ namespace BankApplication
 {
     public abstract class Account
     {
-        private int accountID;
-        
         public ObservableCollection<Transaction> Transactions { get; set; } = new ObservableCollection<Transaction>();
         public decimal Balance { get; set; }
         public double Interest { get; set; }
-        public int AccountID { get { return accountID; } private set { AccountLogic.NewAccountID(); } } //MÅSTE VARA UNIKT
+        public int AccountID { get; set; } //MÅSTE VARA UNIKT
 
         public Account(long balance, double interest)
         {
             Balance = balance;
             Interest = interest;
-            accountID = AccountID;
+            AccountID = AccountLogic.NewAccountID();
         }
         public string Summary
         {
-            get { return $"{AccountID}\t{Balance}\t{Interest} {typeof(Account).ToString()}"; }
+            get { return $"{AccountID} \t {Balance} \t {Interest*100}% \t {GetType().Name}"; }
         }
         //to string
     }
