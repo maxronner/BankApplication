@@ -51,7 +51,7 @@ namespace BankApplication
 
         private void mySearch_Click(object sender, RoutedEventArgs e)
         {
-            int ssn = Convert.ToInt32(enterSSN.Text);
+            long ssn = Convert.ToInt64(mySearchBox.Text);
             
             for (int i = 0; i < customers.Count; i++)
             {
@@ -61,6 +61,11 @@ namespace BankApplication
                     Frame.Navigate(typeof(AccountPage), selected);
                 }
             }
+        }
+
+        private void mySearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
