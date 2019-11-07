@@ -87,7 +87,7 @@ namespace BankApplication
             List<string> allTransactions = new List<string>();
             foreach (var temp in account.Transactions)
             {
-                allTransactions.Add($"{temp.Time.ToString()}, {temp.TransactionType}, {temp.Amount}, {temp.NewBalance}");
+                allTransactions.Add($"{temp.Time}, {temp.TransactionType}, {temp.Amount}, {temp.NewBalance}");
             }
             return allTransactions;
         }

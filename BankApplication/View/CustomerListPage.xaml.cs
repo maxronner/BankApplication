@@ -48,5 +48,19 @@ namespace BankApplication
             
 
         }
+
+        private void mySearch_Click(object sender, RoutedEventArgs e)
+        {
+            int ssn = Convert.ToInt32(enterSSN.Text);
+            
+            for (int i = 0; i < customers.Count; i++)
+            {
+                if (ssn == customers[i].SSN)
+                {
+                    var selected = customers[i];
+                    Frame.Navigate(typeof(AccountPage), selected);
+                }
+            }
+        }
     }
 }

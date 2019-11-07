@@ -44,7 +44,13 @@
         </ListView>
         <Button x:Name="myView" Content="View" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="#FF484747" Click="Button_Click" FontSize="20" BorderBrush="#FF737373"/>
         <Button x:Name="myRemove" Content="Remove" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="myRemove_Click"/>
-        <Button x:Name="mySearch" Content="Search" Grid.Row="6" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373"/>
+        <Button x:Name="mySearch" Content="Search" Grid.Row="6" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="mySearch_Click">
+            <Button.Flyout>
+                <Flyout Placement="Bottom">
+                    <TextBox x:Name="enterSSN"/>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
     </Grid>
 
 </Page>

@@ -55,5 +55,16 @@ namespace BankApplication
             this.myCustomerName.Text = param.Name;
 
         }
+
+        private void myTransactions_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = accountList.SelectedItem;
+            this.Frame.Navigate(typeof(TransactionsPage), selected);
+        }
+
+        private void customerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

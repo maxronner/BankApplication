@@ -21,10 +21,12 @@ namespace BankApplication
             Amount = amount;
             NewBalance = newBalance;
             Time = new DateTime();
+
+
         }
         public string Summary
         {
-            get { return $"{AccountID}\t{TransactionType}\t{Amount}\t{NewBalance}\t{Time}"; }
+            get { return $"{Time.Date}\t{Time.Hour}\t{AccountID}\t{TransactionType}\t{Amount}\t{NewBalance}"; }
         }
     }
 }
