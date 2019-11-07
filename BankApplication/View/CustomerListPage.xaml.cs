@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,13 +38,22 @@ namespace BankApplication
 
        
 
-        private void myRemove_Click(object sender, RoutedEventArgs e)
+        private async void myRemove_Click(object sender, RoutedEventArgs e)
         {
-            var selected = customerList.SelectedItem;
+            MessageDialog msg = new MessageDialog("Remove customer permanently?", "Remove customer");
 
-            CustomerLogic.RemoveCustomer((Customer)selected);
-            
+            msg.Commands.Clear();
+            msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+            msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
 
+            var result = await msg.ShowAsync();
+
+            if ((int)result.Id == 0)
+            {
+                var selected = customerList.SelectedItem;
+
+                CustomerLogic.RemoveCustomer((Customer)selected);
+            }
         }
 
         private async void mySearch_Click(object sender, RoutedEventArgs e)
