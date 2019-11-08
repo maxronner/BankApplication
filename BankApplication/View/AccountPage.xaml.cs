@@ -72,6 +72,7 @@ namespace BankApplication
 
         private void myEditName_Click(object sender, RoutedEventArgs e)
         {
+            CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text);
 
         }
 
@@ -91,7 +92,6 @@ namespace BankApplication
             decimal.TryParse(depositBox.Text, out decimal amount);
             AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);
         }
-
         private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog msg = new MessageDialog("Remove account permanently?", "Remove account");
@@ -113,8 +113,6 @@ namespace BankApplication
                 var result2 = await msg2.ShowAsync();
 
             }
-
-            
         }
     }
 }
