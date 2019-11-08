@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -89,6 +90,31 @@ namespace BankApplication
         {
             decimal.TryParse(depositBox.Text, out decimal amount);
             AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);
+        }
+
+        private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
+        {
+            MessageDialog msg = new MessageDialog("Remove account permanently?", "Remove account");
+
+            msg.Commands.Clear();
+            msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+            msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
+
+            var result = await msg.ShowAsync();
+
+            if ((int)result.Id == 0)
+            {
+                var selected = accountList.SelectedItem;
+
+                string rate = AccountLogic.CloseAccount((Account)selected, customer);
+
+                MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
+
+                var result2 = await msg2.ShowAsync();
+
+            }
+
+            
         }
     }
 }

@@ -71,22 +71,15 @@ namespace BankApplication
             return false;
         }
 
-        public static string CloseAccount(Customer customer, int accountID)
+        public static string CloseAccount(Account account, Customer customer)
         {
-
-            if (customer != null)
+            if (account != null)
             {
-                for (int i = 0; i < customer.Accounts.Count; i++)
-                {
-                    if (customer.Accounts[i].AccountID == accountID)
-                    {
-                        string deletedAccount = $"{customer.Accounts[i].Balance} {customer.Accounts[i].Interest}";
-                        customer.Accounts.RemoveAt(i);
-                        return deletedAccount;
-                    }
-                }
-            }
 
+                string deletedAccount = $"Account balance: {account.Balance} Account rate: {account.Interest*100}%";
+                customer.Accounts.Remove(account);
+                return deletedAccount;
+            }
             return null;
         }
 
@@ -95,7 +88,7 @@ namespace BankApplication
             if (customer != null)
             {
                 customer.Accounts.Add(new CreditAccount());
-                var account = customer.Accounts.Last();                
+                var account = customer.Accounts.Last();
                 return account.AccountID;
             }
             return -1;
