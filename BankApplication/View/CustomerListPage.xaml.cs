@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -40,19 +39,20 @@ namespace BankApplication
 
         private async void myRemove_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog msg = new MessageDialog("Remove customer permanently?", "Remove customer");
-
-            msg.Commands.Clear();
-            msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
-            msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
-
-            var result = await msg.ShowAsync();
-
-            if ((int)result.Id == 0)
+            if (customerList.SelectedItem != null)
             {
-                var selected = customerList.SelectedItem;
+                MessageDialog msg = new MessageDialog("Remove customer permanently?", "Remove customer");
 
-                CustomerLogic.RemoveCustomer((Customer)selected);
+                msg.Commands.Clear();
+                msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
+
+                var result = await msg.ShowAsync();
+
+                if ((int)result.Id == 0)
+                {
+                    CustomerLogic.RemoveCustomer((Customer) customerList.SelectedItem);
+                }
             }
         }
 
@@ -86,8 +86,8 @@ namespace BankApplication
 
         private void myView_Click(object sender, RoutedEventArgs e)
         {
-            var selected = customerList.SelectedItem;
-            this.Frame.Navigate(typeof(AccountPage), selected);
+            if (customerList.SelectedItem is Customer customer)
+            this.Frame.Navigate(typeof(AccountPage), customer);
         }
 
         private void printCustomerButton_Click(object sender, RoutedEventArgs e)
@@ -99,11 +99,10 @@ namespace BankApplication
 
         private void addCustomer_Click(object sender, RoutedEventArgs e)
         {
-            string name = "";
-            name = this.accountNameBox.Text;
-            long ssn;
-            ssn = Convert.ToInt64(this.accountSSNBox.Text);
-            CustomerLogic.AddCustomer(name, ssn);
+            if (long.TryParse(accountSSNBox.Text, out long ssn))
+            {
+                CustomerLogic.AddCustomer(accountNameBox.Text, ssn);
+            }        
         }
     }
 }

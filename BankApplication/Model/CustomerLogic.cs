@@ -27,6 +27,10 @@ namespace BankApplication
             }
             else
             {
+                if(ssn.ToString().Length != 10 || name == "")
+                {
+                    return false;
+                }
                 Customers.Add(new Customer(ssn, name));
                 return true;
             }
@@ -61,15 +65,6 @@ namespace BankApplication
             }
             return removedCustomer;
             
-        }
-        public static void SortCustomers()
-        {
-            object temp = Customers;
-            List<Customer> customers = temp as List<Customer>;
-            customers.Sort();
-            temp = customers;
-            Customers = temp as ObservableCollection<Customer>;
-        }
-        
+        }  
     }
 }
