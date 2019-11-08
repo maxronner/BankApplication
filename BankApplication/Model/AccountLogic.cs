@@ -54,7 +54,7 @@ namespace BankApplication
             if (account != null)
             {
                 account.Balance += amount;
-                account.Transactions.Add(new Transaction(account.AccountID, false, amount, account.Balance));
+                account.Transactions.Add(new Transaction(account.AccountID, "Deposit", amount, account.Balance));
                 return true;
             }
             return false;
@@ -62,10 +62,10 @@ namespace BankApplication
 
         public static bool Withdraw(Account account, decimal amount)
         {
-            if (account.Balance >= amount || account.Balance > 0)
+            if (account.Balance >= amount)
             {
                 account.Balance -= amount;
-                account.Transactions.Add(new Transaction(account.AccountID, true, amount, account.Balance));
+                account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
                 return true;
             }
             return false;

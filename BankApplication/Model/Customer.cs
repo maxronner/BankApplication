@@ -14,7 +14,7 @@ namespace BankApplication
         public long SSN 
         { 
             get { return ssn; }
-            set { if (value.ToString().Length != 10) ssn = 0; else ssn = value; }
+            private set { if (value.ToString().Length != 10) ssn = 0; else ssn = value; }
         }
         public  ObservableCollection<Account> Accounts { get; set; }
 
