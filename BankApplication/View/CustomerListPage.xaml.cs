@@ -101,20 +101,22 @@ namespace BankApplication
 
         private async void addCustomer_Click(object sender, RoutedEventArgs e)
         {
+            bool success = false;
+
             if (long.TryParse(accountSSNBox.Text, out long ssn))
             {
-                bool result = CustomerLogic.AddCustomer(accountNameBox.Text, ssn);
+                success = CustomerLogic.AddCustomer(accountNameBox.Text, ssn);
             }                    
             MessageDialog customerCreation;
             if (success)
             {
-            customerCreation = new MessageDialog($"Name: {name}\nSSN: {ssn}", "Customer Created Successfully!");
+            customerCreation = new MessageDialog($"Name: {accountNameBox.Text}\nSSN: {ssn}", "Customer Created Successfully!");
             }
             else
             {
             customerCreation = new MessageDialog("Customer creation failed...");
             }            
-            var result = await CustomerCreation.ShowAsync();
+            await customerCreation.ShowAsync();
         }
     }
 }

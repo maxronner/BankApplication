@@ -58,8 +58,8 @@ namespace BankApplication
 
         private void myTransactions_Click(object sender, RoutedEventArgs e)
         {
-            object selected = accountList.SelectedItem;
-            this.Frame.Navigate(typeof(TransactionsPage), selected);
+            if (accountList.SelectedItem != null)
+            this.Frame.Navigate(typeof(TransactionsPage), accountList.SelectedItem);
         }
 
         private void customerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -95,10 +95,12 @@ namespace BankApplication
 
         private async void myWithdraw_Click(object sender, RoutedEventArgs e)
         {
+            bool success = false;
+            decimal amount = 0;
             if (accountList.SelectedIndex != -1)
             {
-                decimal.TryParse(withdrawBox.Text, out decimal amount);
-                bool success = AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
+                decimal.TryParse(withdrawBox.Text, out amount);
+                success = AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
             }
             MessageDialog withdraw;
             if (success)
@@ -107,17 +109,19 @@ namespace BankApplication
             }
             else
             {
-                wirhdraw = new MessageDialog("Withdraw failed...");
+                withdraw = new MessageDialog("Withdraw failed...");
             }
-            var result = await SavingsWithdraw.ShowAsync();
+            await withdraw.ShowAsync();
         }
 
         private async void myDeposit_Click(object sender, RoutedEventArgs e)
         {
+            bool success = false;
+            decimal amount = 0;
             if (accountList.SelectedIndex != -1)
             {
-                decimal.TryParse(depositBox.Text, out decimal amount);
-                bool success = AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);                
+                decimal.TryParse(depositBox.Text, out amount);
+                success = AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);                
             }            
             MessageDialog deposit;
             if (success)
@@ -128,7 +132,7 @@ namespace BankApplication
             {
                 deposit = new MessageDialog("Deposit failed...");
             }
-            var result = await Deposit.ShowAsync();     
+            await deposit.ShowAsync();     
         }
         private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
         {
