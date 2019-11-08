@@ -67,38 +67,68 @@ namespace BankApplication
 
         }
 
-        private void addSavings_Click(object sender, RoutedEventArgs e)
+        private async void addSavings_Click(object sender, RoutedEventArgs e)
         {
-            AccountLogic.AddSavingsAccount(customer);
+            int accountID = AccountLogic.AddSavingsAccount(customer);
+
+            MessageDialog SavingsAccCreation = new MessageDialog($"Account ID: {accountID}", "Savings Account Created!");
+            var result = await SavingsAccCreation.ShowAsync();
         }
 
-        private void myEditName_Click(object sender, RoutedEventArgs e)
+        private async void myEditName_Click(object sender, RoutedEventArgs e)
         {
             CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text);
 
+            MessageDialog NameChange = new MessageDialog($"New Name: {myCustomerName.Text}", "Name Was Changed Successfully!");
+            var result = await NameChange.ShowAsync();
+
         }
 
-        private void addCredit_Click(object sender, RoutedEventArgs e)
+        private async void addCredit_Click(object sender, RoutedEventArgs e)
         {
-            AccountLogic.AddCreditAccount(customer);
+           int accountID = AccountLogic.AddCreditAccount(customer);
+
+           
+            MessageDialog CreditAccCreation = new MessageDialog($"Account ID: {accountID}" , "Credit Account Created!");
+            var result = await CreditAccCreation.ShowAsync();
         }
 
-        private void myWithdraw_Click(object sender, RoutedEventArgs e)
+        private async void myWithdraw_Click(object sender, RoutedEventArgs e)
         {
             if (accountList.SelectedIndex != -1)
             {
                 decimal.TryParse(withdrawBox.Text, out decimal amount);
-                AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
+                bool success = AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
             }
+            MessageDialog withdraw;
+            if (success)
+            {
+                withdraw = new MessageDialog($"{amount} SEK withdrawn", "Withdrawal successful!");
+            }
+            else
+            {
+                wirhdraw = new MessageDialog("Withdraw failed...");
+            }
+            var result = await SavingsWithdraw.ShowAsync();
         }
 
-        private void myDeposit_Click(object sender, RoutedEventArgs e)
+        private async void myDeposit_Click(object sender, RoutedEventArgs e)
         {
             if (accountList.SelectedIndex != -1)
             {
                 decimal.TryParse(depositBox.Text, out decimal amount);
-                AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);
+                bool success = AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);                
+            }            
+            MessageDialog deposit;
+            if (success)
+            {
+                deposit = new MessageDialog($"{amount} SEK Deposited", "Deposit Successful!");
             }
+            else
+            {
+                deposit = new MessageDialog("Deposit failed...");
+            }
+            var result = await Deposit.ShowAsync();     
         }
         private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
         {
@@ -125,5 +155,6 @@ namespace BankApplication
                 }
             }                    
         }
+
     }
 }

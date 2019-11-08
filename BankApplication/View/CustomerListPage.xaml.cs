@@ -90,19 +90,31 @@ namespace BankApplication
             this.Frame.Navigate(typeof(AccountPage), customer);
         }
 
-        private void printCustomerButton_Click(object sender, RoutedEventArgs e)
+        private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
 
-            new FileLogic().PrintCustomersInfo();
+            //new FileLogic().PrintCustomersInfo();
 
+            MessageDialog PrintCustomers = new MessageDialog($"Customers were printed to file", "Customers Printed Successfully!");
+            var result = await PrintCustomers.ShowAsync();
         }
 
-        private void addCustomer_Click(object sender, RoutedEventArgs e)
+        private async void addCustomer_Click(object sender, RoutedEventArgs e)
         {
             if (long.TryParse(accountSSNBox.Text, out long ssn))
             {
-                CustomerLogic.AddCustomer(accountNameBox.Text, ssn);
-            }        
+                bool result = CustomerLogic.AddCustomer(accountNameBox.Text, ssn);
+            }                    
+            MessageDialog customerCreation;
+            if (success)
+            {
+            customerCreation = new MessageDialog($"Name: {name}\nSSN: {ssn}", "Customer Created Successfully!");
+            }
+            else
+            {
+            customerCreation = new MessageDialog("Customer creation failed...");
+            }            
+            var result = await CustomerCreation.ShowAsync();
         }
     }
 }
