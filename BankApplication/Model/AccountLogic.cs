@@ -20,7 +20,7 @@ namespace BankApplication
         }
         public static int NewAccountID()
         {
-            int availableAccountID = 0;
+            int availableAccountID = 1000;
             foreach (var customer in CustomerLogic.Customers)
             {
                 foreach (var account in customer.Accounts)
@@ -49,12 +49,12 @@ namespace BankApplication
             return null;
         }
 
-        public static bool Deposit(Account account, long accountID, decimal amount)
+        public static bool Deposit(Account account, decimal amount)
         {
-            if (account.AccountID == accountID)
+            if (account != null)
             {
                 account.Balance += amount;
-                account.Transactions.Add(new Transaction(accountID, false, amount, account.Balance));
+                account.Transactions.Add(new Transaction(account.AccountID, false, amount, account.Balance));
                 return true;
             }
             return false;
@@ -71,22 +71,15 @@ namespace BankApplication
             return false;
         }
 
-        public static string CloseAccount(Customer customer, int accountID)
+        public static string CloseAccount(Account account, Customer customer)
         {
-
-            if (customer != null)
+            if (account != null)
             {
-                for (int i = 0; i < customer.Accounts.Count; i++)
-                {
-                    if (customer.Accounts[i].AccountID == accountID)
-                    {
-                        string deletedAccount = $"{customer.Accounts[i].Balance} {customer.Accounts[i].Interest}";
-                        customer.Accounts.RemoveAt(i);
-                        return deletedAccount;
-                    }
-                }
-            }
 
+                string deletedAccount = $"Account balance: {account.Balance} Account rate: {account.Interest*100}%";
+                customer.Accounts.Remove(account);
+                return deletedAccount;
+            }
             return null;
         }
 
@@ -95,7 +88,7 @@ namespace BankApplication
             if (customer != null)
             {
                 customer.Accounts.Add(new CreditAccount());
-                var account = customer.Accounts.Last();                
+                var account = customer.Accounts.Last();
                 return account.AccountID;
             }
             return -1;
