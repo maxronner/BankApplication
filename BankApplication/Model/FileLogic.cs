@@ -9,19 +9,27 @@ namespace BankApplication
 {
     public class FileLogic
     {
-        public void PrintCustomersInfo()
+             public async void PrintCustomersInfo()
         {
             //Printa för- och efternamn samt personnummer till fil.
 
-            using (StreamWriter writer = new StreamWriter(@"C:\CustomerInformation.txt"))
-            {
-                foreach (var item in CustomerLogic.Customers)
-                {
-                    writer.WriteLine("Namn: {0} Personnummer: {1}", item.Name, item.SSN);
-                }
+            Windows.Storage.StorageFolder storageFolder =
+           Windows.Storage.ApplicationData.Current.LocalFolder;
+           Windows.Storage.StorageFile sampleFile =
+           await storageFolder.CreateFileAsync("customertest.txt",
+            Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, "bigus dickus");
 
-                //Hänvisa till listan i CustomerLogic.
-            }
+
+            //using (StreamWriter writer = new StreamWriter(@"C:\CustomerInformation.txt"))
+            //{
+            //    foreach (var item in CustomerLogic.Customers)
+            //    {
+            //        writer.WriteLine("Namn: {0} Personnummer: {1}", item.Name, item.SSN);
+            //    }
+
+            //    //Hänvisa till listan i CustomerLogic.
+            //}
         }
 
         public void TransactionsHistory(Account account)
