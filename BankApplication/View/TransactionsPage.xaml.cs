@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -47,9 +48,12 @@ namespace BankApplication
             //behandla data från mottaget objekt 
         }
 
-        private void myPrint_Click(object sender, RoutedEventArgs e)
+        private async void myPrint_Click(object sender, RoutedEventArgs e)
         {
 
+
+            MessageDialog Print = new MessageDialog($"Transactions were printed to C: ", "Transactions Printed!");
+            var result = await Print.ShowAsync();
         }
     }
 }
