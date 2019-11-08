@@ -48,10 +48,12 @@ namespace BankApplication
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //base.OnNavigatedTo(e);
             customer = (Customer)e.Parameter;
-            this.mySSN.Text = customer.SSN.ToString();
-            this.myCustomerName.Text = customer.Name;
+            if (customer != null)
+            {               
+                this.mySSN.Text = customer.SSN.ToString();
+                this.myCustomerName.Text = customer.Name;
+            }
         }
 
         private void myTransactions_Click(object sender, RoutedEventArgs e)
@@ -93,45 +95,66 @@ namespace BankApplication
 
         private async void myWithdraw_Click(object sender, RoutedEventArgs e)
         {
-            decimal.TryParse(withdrawBox.Text, out decimal amount);
-            AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
-
-            MessageDialog SavingsWithdraw = new MessageDialog($"{amount} SEK withdrawn", "Withdrawal successful!");
+            if (accountList.SelectedIndex != -1)
+            {
+                decimal.TryParse(withdrawBox.Text, out decimal amount);
+                bool success = AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
+            }
+            MessageDialog withdraw;
+            if (success)
+            {
+                withdraw = new MessageDialog($"{amount} SEK withdrawn", "Withdrawal successful!");
+            }
+            else
+            {
+                wirhdraw = new MessageDialog("Withdraw failed...");
+            }
             var result = await SavingsWithdraw.ShowAsync();
-
         }
 
         private async void myDeposit_Click(object sender, RoutedEventArgs e)
         {
-            decimal.TryParse(depositBox.Text, out decimal amount);
-            AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);
-
-            MessageDialog Deposit = new MessageDialog($"{amount} SEK Deposited", "Deposit Successful!");
-            var result = await Deposit.ShowAsync();
+            if (accountList.SelectedIndex != -1)
+            {
+                decimal.TryParse(depositBox.Text, out decimal amount);
+                bool success = AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);                
+            }            
+            MessageDialog deposit;
+            if (success)
+            {
+                deposit = new MessageDialog($"{amount} SEK Deposited", "Deposit Successful!");
+            }
+            else
+            {
+                deposit = new MessageDialog("Deposit failed...");
+            }
+            var result = await Deposit.ShowAsync();     
         }
         private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog msg = new MessageDialog("Remove account permanently?", "Remove account");
-
-            msg.Commands.Clear();
-            msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
-            msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
-
-            var result = await msg.ShowAsync();
-
-            if ((int)result.Id == 0)
+            if (accountList.SelectedItem != null)
             {
-                var selected = accountList.SelectedItem;
+                MessageDialog msg = new MessageDialog("Remove account permanently?", "Remove account");
 
-                string rate = AccountLogic.CloseAccount((Account)selected, customer);
+                msg.Commands.Clear();
+                msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
 
-                MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
+                var result = await msg.ShowAsync();
 
-                var result2 = await msg2.ShowAsync();
+                if ((int)result.Id == 0)
+                {
+                    var selected = accountList.SelectedItem;
 
-            }
+                    string rate = AccountLogic.CloseAccount((Account)selected, customer);
+
+                    MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
+
+                    var result2 = await msg2.ShowAsync();
+
+                }
+            }                    
         }
-
 
     }
 }
