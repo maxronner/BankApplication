@@ -71,6 +71,7 @@ namespace BankApplication
 
         private void myEditName_Click(object sender, RoutedEventArgs e)
         {
+            CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text);
 
         }
 
@@ -89,6 +90,11 @@ namespace BankApplication
         {
             decimal.TryParse(depositBox.Text, out decimal amount);
             AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);
+        }
+
+        private void myCloseAccount_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
