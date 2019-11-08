@@ -27,6 +27,10 @@ namespace BankApplication
             }
             else
             {
+                if(ssn.ToString().Length != 10 || name == "")
+                {
+                    return false;
+                }
                 Customers.Add(new Customer(ssn, name));
                 return true;
             }
@@ -43,28 +47,24 @@ namespace BankApplication
             }            
             return true;
         }
-        public static List<string> RemoveCustomer(Customer customer)
+        public static List<string> RemoveCustomer(Customer customer) 
         {
             List<string> removedCustomer = new List<string>();
 
-            if (customer.Accounts != null)
+            try 
             {
                 foreach (var item in customer.Accounts)
                 {
                     removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
                 }
+                Customers.Remove(customer);
             }
-            Customers.Remove(customer);
+            catch (Exception)
+            {
+
+            }
             return removedCustomer;
-        }
-        public static void SortCustomers()
-        {
-            object temp = Customers;
-            List<Customer> customers = temp as List<Customer>;
-            customers.Sort();
-            temp = customers;
-            Customers = temp as ObservableCollection<Customer>;
-        }
-        
+            
+        }  
     }
 }
