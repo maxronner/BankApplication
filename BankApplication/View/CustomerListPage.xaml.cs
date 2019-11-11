@@ -106,5 +106,10 @@ namespace BankApplication
             }            
             await customerCreation.ShowAsync();
         }
+
+        private void myBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(StartPage));
+        }
     }
 }
