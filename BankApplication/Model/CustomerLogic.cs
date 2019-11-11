@@ -47,6 +47,18 @@ namespace BankApplication
             }            
             return true;
         }
+
+        public static bool Login(string username, string password)
+        {
+            string input = "admin";
+            if (username == input && password == input)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         public static List<string> RemoveCustomer(Customer customer) 
         {
             List<string> removedCustomer = new List<string>();
@@ -65,6 +77,8 @@ namespace BankApplication
             }
             return removedCustomer;
             
+
+          
         }  
     }
 }
