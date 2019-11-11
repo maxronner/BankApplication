@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BankApplication
@@ -23,11 +24,21 @@ namespace BankApplication
         {
             if (Customers.Contains(new Customer(ssn, name)))
             {
+
                 return false;
             }
             else
             {
-                Customers.Add(new Customer(ssn, name));
+                Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");
+                MatchCollection matches = regexLetters.Matches(name);
+
+                Regex regexNumbers = new Regex(@"^[1-9]+$");
+                MatchCollection matches2 = regexNumbers.Matches(ssn.ToString());
+                if (matches.Count > 0)
+                {
+                    Customers.Add(new Customer(ssn, name));
+                }
+                
                 return true;
             }
         }
@@ -35,7 +46,17 @@ namespace BankApplication
         {
             try
             {
-                customer.Name = name;
+                Regex regex = new Regex(@"^[a-öA-Ö]+$");
+                MatchCollection matches = regex.Matches(name);
+                if (matches.Count > 0)
+                {
+                    customer.Name = name;
+
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception)
             {
