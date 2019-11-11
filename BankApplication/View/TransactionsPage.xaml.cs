@@ -21,8 +21,10 @@ namespace BankApplication
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
     public sealed partial class TransactionsPage : Page
     {
+        private Transaction transaction;
         private Account account;
         public TransactionsPage()
         {
@@ -50,6 +52,9 @@ namespace BankApplication
         {
             MessageDialog Print = new MessageDialog($"Transactions were printed to C: ", "Transactions Printed!");
             var result = await Print.ShowAsync();
+
+            FileLogic f = new FileLogic();
+            f.TransactionsHistory();
         }
     }
 }

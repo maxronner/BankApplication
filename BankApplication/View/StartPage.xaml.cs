@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -40,6 +41,28 @@ namespace BankApplication
         private void myExitButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            bool success = false;
+            success = CustomerLogic.Login(UsernameBox.Text, PasswordBox.Password);
+            
+            if (success)
+            {
+                Frame.Navigate(typeof(AccountPage));
+            }
+            else
+            {
+                MessageDialog logincreation;
+                {
+                    logincreation = new MessageDialog("Fel användarnamn eller lösenord");
+                }
+                await logincreation.ShowAsync();
+            }
+
         }
     }
 }
