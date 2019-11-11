@@ -32,7 +32,7 @@ namespace BankApplication
 
         private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            
         }
         private void myHome_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +75,25 @@ namespace BankApplication
 
         private async void myEditName_Click(object sender, RoutedEventArgs e)
         {
-            CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text);
+            bool success = false;
+
+           
+
+            success = CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text);
+
+            if (!success)
+            {
+                MessageDialog msg = new MessageDialog("You can only enter letters.", "Error!");
+                myCustomerName.Text = "Enter Name";
+                var result = await msg.ShowAsync();
+            }
+            else
+            {
+                MessageDialog msg2 = new MessageDialog($"Name was changed to {myCustomerName.Text}. ","Name Change Successful!");
+                var result2 = await msg2.ShowAsync();
+            }
+
+
 
             MessageDialog NameChange = new MessageDialog($"New Name: {myCustomerName.Text}", "Name Was Changed Successfully!");
             var result = await NameChange.ShowAsync();
