@@ -94,15 +94,11 @@ namespace BankApplication
             }
 
 
-
-            MessageDialog NameChange = new MessageDialog($"New Name: {myCustomerName.Text}", "Name Was Changed Successfully!");
-            var result = await NameChange.ShowAsync();
-
         }
 
         private async void addCredit_Click(object sender, RoutedEventArgs e)
         {
-           int accountID = AccountLogic.AddCreditAccount(customer);
+            int accountID = AccountLogic.AddCreditAccount(customer);
 
            
             MessageDialog CreditAccCreation = new MessageDialog($"Account ID: {accountID}" , "Credit Account Created!");

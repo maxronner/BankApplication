@@ -111,5 +111,10 @@ namespace BankApplication
         {
             Frame.Navigate(typeof(StartPage));
         }
+
+        private void mySort_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

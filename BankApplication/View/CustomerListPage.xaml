@@ -34,22 +34,24 @@
         <Button x:Name="myBack" Content="Back"  FontSize="20" Foreground="#FF484747" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="myBack_Click"/>
         <TextBlock x:Name="myLogo" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Text="Newton Bank" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="115" Width="470" FontSize="72" Foreground="#FFE7DCDC" FontFamily="Frank Ruhl Hofshi"/>
         <Button x:Name="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" Opacity="0" Click="myHome_Click"/>
-        <ListView x:Name="customerList" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="4" ItemsSource="{x:Bind customers}">
+        <ListView x:Name="customerList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="4" ItemsSource="{x:Bind customers}" Margin="213,0,0,0" FontSize="14">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Customer">
-                    <TextBlock Text="{x:Bind Summary}">
-                    </TextBlock>
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Name}" Style="{ThemeResource BaseTextBlockStyle}" FontSize="20"/>
+                        <TextBlock Text="{x:Bind SSN}" FontSize="15"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="myView" Content="View" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="#FF484747" Click="myView_Click" FontSize="20" BorderBrush="#FF737373"/>
-        <Button x:Name="addCustomer" Content="Add Customer" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="top" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="addCustomer_Click"/>
-        <TextBox x:Name="accountNameBox"  Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="bottom" Foreground="#FF484747" BorderBrush="#FF737373" TextChanged="mySearchBox_TextChanged" FontSize="18" PlaceholderText="Name"/>
-        <TextBox x:Name="accountSSNBox"  Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF484747" BorderBrush="#FF737373" TextChanged="mySearchBox_TextChanged" FontSize="18" PlaceholderText="SSN"/>
-        <Button x:Name="myRemove" Content="Remove" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="myRemove_Click"/>
-        <Button x:Name="mySearch" Content="Search" Grid.Row="6" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="mySearch_Click"/>
-        <TextBox x:Name="mySearchBox" Grid.Row="7" Grid.Column="5" VerticalAlignment="Top" HorizontalAlignment="Stretch" Text="" TextWrapping="Wrap"  Foreground="#FF484747" FontSize="18" BorderBrush="#FF737373"/>
-        <Button x:Name="printCustomerButton" Content="Print" Grid.Column="6"  Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="printCustomerButton_Click" FontSize="21"/>
+        <Button x:Name="myView" Content="View" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" Foreground="#FF484747" Click="myView_Click" FontSize="20" BorderBrush="#FF737373" Grid.ColumnSpan="2" Margin="213,0,0,0"/>
+        <Button x:Name="addCustomer" Content="Add Customer" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="addCustomer_Click"/>
+        <TextBox x:Name="accountNameBox"  Grid.Column="2" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF484747" BorderBrush="#FF737373" TextChanged="mySearchBox_TextChanged" FontSize="18" PlaceholderText="Name"/>
+        <TextBox x:Name="accountSSNBox"  Grid.Column="3" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF484747" BorderBrush="#FF737373" TextChanged="mySearchBox_TextChanged" FontSize="18" PlaceholderText="SSN" Margin="0,0,1,0"/>
+        <Button x:Name="myRemove" Content="Remove" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="myRemove_Click" Margin="0,0,1,0"/>
+        <Button x:Name="mySearch" Content="Search" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" Foreground="#FF484747" FontSize="20" BorderBrush="#FF737373" Click="mySearch_Click" Grid.ColumnSpan="2" Margin="0,0,214,0"/>
+        <TextBox x:Name="mySearchBox" Grid.Row="7" Grid.Column="4" VerticalAlignment="Top" Text="" TextWrapping="Wrap"  Foreground="#FF484747" FontSize="18" BorderBrush="#FF737373" Grid.ColumnSpan="2" Margin="0,0,214,0"/>
+        <Button x:Name="printCustomerButton" Content="Print" Grid.Column="5"  Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="printCustomerButton_Click" FontSize="21" Grid.ColumnSpan="2" Margin="108,56,107,55" Grid.RowSpan="2"/>
     </Grid>
 
 </Page>
