@@ -83,9 +83,6 @@ namespace BankApplication
 
         private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-
-            //new FileLogic().PrintCustomersInfo();
-
             MessageDialog PrintCustomers = new MessageDialog($"Customers were printed to file", "Customers Printed Successfully!");
             var result = await PrintCustomers.ShowAsync();
         }

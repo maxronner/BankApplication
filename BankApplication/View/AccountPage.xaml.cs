@@ -28,15 +28,13 @@ namespace BankApplication
         public AccountPage()
         {
             this.InitializeComponent();
-            //  this.mySSN.Text=
         }
 
         private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void myHome_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StartPage));
         }
@@ -159,6 +157,5 @@ namespace BankApplication
                 }
             }                    
         }
-
     }
 }
