@@ -42,17 +42,14 @@ namespace BankApplication
             this.Frame.Navigate(typeof(StartPage));
         }
 
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //base.OnNavigatedTo(e);
             account = (Account)e.Parameter;
             //behandla data från mottaget objekt 
         }
 
         private async void myPrint_Click(object sender, RoutedEventArgs e)
         {
-
             MessageDialog Print = new MessageDialog($"Transactions were printed to C: ", "Transactions Printed!");
             var result = await Print.ShowAsync();
 

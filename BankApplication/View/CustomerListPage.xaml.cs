@@ -32,10 +32,8 @@ namespace BankApplication
 
         private void myHome_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(StartPage));
         }
-
-       
 
         private async void myRemove_Click(object sender, RoutedEventArgs e)
         {
@@ -60,8 +58,7 @@ namespace BankApplication
         {
             var input = mySearchBox.Text;
             long.TryParse(input, out long result);
-            //var message = new MessageDialog("Type a valid name/ssn!");
-            //await message.ShowAsync();
+
 
             for (int i = 0; i < customers.Count; i++)
             {
@@ -78,12 +75,6 @@ namespace BankApplication
         {
 
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void myView_Click(object sender, RoutedEventArgs e)
         {
             if (customerList.SelectedItem is Customer customer)
@@ -92,9 +83,6 @@ namespace BankApplication
 
         private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-
-            //new FileLogic().PrintCustomersInfo();
-
             MessageDialog PrintCustomers = new MessageDialog($"Customers were printed to file", "Customers Printed Successfully!");
             var result = await PrintCustomers.ShowAsync();
         }
