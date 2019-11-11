@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -33,26 +32,25 @@ namespace BankApplication
 
         private void myHome_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(StartPage));
         }
-
-       
 
         private async void myRemove_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog msg = new MessageDialog("Remove customer permanently?", "Remove customer");
-
-            msg.Commands.Clear();
-            msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
-            msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
-
-            var result = await msg.ShowAsync();
-
-            if ((int)result.Id == 0)
+            if (customerList.SelectedItem != null)
             {
-                var selected = customerList.SelectedItem;
+                MessageDialog msg = new MessageDialog("Remove customer permanently?", "Remove customer");
 
-                CustomerLogic.RemoveCustomer((Customer)selected);
+                msg.Commands.Clear();
+                msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
+
+                var result = await msg.ShowAsync();
+
+                if ((int)result.Id == 0)
+                {
+                    CustomerLogic.RemoveCustomer((Customer) customerList.SelectedItem);
+                }
             }
         }
 
@@ -60,8 +58,7 @@ namespace BankApplication
         {
             var input = mySearchBox.Text;
             long.TryParse(input, out long result);
-            //var message = new MessageDialog("Type a valid name/ssn!");
-            //await message.ShowAsync();
+
 
             for (int i = 0; i < customers.Count; i++)
             {
@@ -78,32 +75,41 @@ namespace BankApplication
         {
 
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void myView_Click(object sender, RoutedEventArgs e)
         {
-            var selected = customerList.SelectedItem;
-            this.Frame.Navigate(typeof(AccountPage), selected);
+            if (customerList.SelectedItem is Customer customer)
+            this.Frame.Navigate(typeof(AccountPage), customer);
         }
 
-        private void printCustomerButton_Click(object sender, RoutedEventArgs e)
+        private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-
-            new FileLogic().PrintCustomersInfo();
-
+            MessageDialog PrintCustomers = new MessageDialog($"Customers were printed to file", "Customers Printed Successfully!");
+            var result = await PrintCustomers.ShowAsync();
         }
 
-        private void addCustomer_Click(object sender, RoutedEventArgs e)
+        private async void addCustomer_Click(object sender, RoutedEventArgs e)
         {
-            string name = "";
-            name = this.accountNameBox.Text;
-            long ssn;
-            ssn = Convert.ToInt64(this.accountSSNBox.Text);
-            CustomerLogic.AddCustomer(name, ssn);
+            bool success = false;
+
+            if (long.TryParse(accountSSNBox.Text, out long ssn))
+            {
+                success = CustomerLogic.AddCustomer(accountNameBox.Text, ssn);
+            }                    
+            MessageDialog customerCreation;
+            if (success)
+            {
+            customerCreation = new MessageDialog($"Name: {accountNameBox.Text}\nSSN: {ssn}", "Customer Created Successfully!");
+            }
+            else
+            {
+            customerCreation = new MessageDialog("Customer creation failed...");
+            }            
+            await customerCreation.ShowAsync();
+        }
+
+        private void myBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(StartPage));
         }
     }
 }

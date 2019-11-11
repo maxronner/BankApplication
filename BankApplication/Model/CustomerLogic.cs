@@ -29,6 +29,7 @@ namespace BankApplication
             }
             else
             {
+
                 Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");
                 MatchCollection matches = regexLetters.Matches(name);
 
@@ -38,7 +39,12 @@ namespace BankApplication
                 {
                     Customers.Add(new Customer(ssn, name));
                 }
-                
+              
+                if(ssn.ToString().Length != 10 || name == "")
+                {
+                    return false;
+                }
+                Customers.Add(new Customer(ssn, name));
                 return true;
             }
         }
@@ -64,28 +70,38 @@ namespace BankApplication
             }            
             return true;
         }
-        public static List<string> RemoveCustomer(Customer customer)
+
+        public static bool Login(string username, string password)
+        {
+            string input = "admin";
+            if (username == input && password == input)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public static List<string> RemoveCustomer(Customer customer) 
         {
             List<string> removedCustomer = new List<string>();
 
-            if (customer.Accounts != null)
+            try 
             {
                 foreach (var item in customer.Accounts)
                 {
                     removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
                 }
+                Customers.Remove(customer);
             }
-            Customers.Remove(customer);
+            catch (Exception)
+            {
+
+            }
             return removedCustomer;
-        }
-        public static void SortCustomers()
-        {
-            object temp = Customers;
-            List<Customer> customers = temp as List<Customer>;
-            customers.Sort();
-            temp = customers;
-            Customers = temp as ObservableCollection<Customer>;
-        }
-        
+            
+
+          
+        }  
     }
 }

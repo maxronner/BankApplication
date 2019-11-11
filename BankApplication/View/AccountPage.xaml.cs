@@ -28,15 +28,13 @@ namespace BankApplication
         public AccountPage()
         {
             this.InitializeComponent();
-            //  this.mySSN.Text=
         }
 
         private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
         {
             
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void myHome_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StartPage));
         }
@@ -48,16 +46,18 @@ namespace BankApplication
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //base.OnNavigatedTo(e);
             customer = (Customer)e.Parameter;
-            this.mySSN.Text = customer.SSN.ToString();
-            this.myCustomerName.Text = customer.Name;
+            if (customer != null)
+            {               
+                this.mySSN.Text = customer.SSN.ToString();
+                this.myCustomerName.Text = customer.Name;
+            }
         }
 
         private void myTransactions_Click(object sender, RoutedEventArgs e)
         {
-            object selected = accountList.SelectedItem;
-            this.Frame.Navigate(typeof(TransactionsPage), selected);
+            if (accountList.SelectedItem != null)
+            this.Frame.Navigate(typeof(TransactionsPage), accountList.SelectedItem);
         }
 
         private void customerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,9 +65,12 @@ namespace BankApplication
 
         }
 
-        private void addSavings_Click(object sender, RoutedEventArgs e)
+        private async void addSavings_Click(object sender, RoutedEventArgs e)
         {
-            AccountLogic.AddSavingsAccount(customer);
+            int accountID = AccountLogic.AddSavingsAccount(customer);
+
+            MessageDialog SavingsAccCreation = new MessageDialog($"Account ID: {accountID}", "Savings Account Created!");
+            var result = await SavingsAccCreation.ShowAsync();
         }
 
         private async void myEditName_Click(object sender, RoutedEventArgs e)
@@ -92,45 +95,85 @@ namespace BankApplication
 
 
 
+            MessageDialog NameChange = new MessageDialog($"New Name: {myCustomerName.Text}", "Name Was Changed Successfully!");
+            var result = await NameChange.ShowAsync();
+
         }
 
-        private void addCredit_Click(object sender, RoutedEventArgs e)
+        private async void addCredit_Click(object sender, RoutedEventArgs e)
         {
-            AccountLogic.AddCreditAccount(customer);
+           int accountID = AccountLogic.AddCreditAccount(customer);
+
+           
+            MessageDialog CreditAccCreation = new MessageDialog($"Account ID: {accountID}" , "Credit Account Created!");
+            var result = await CreditAccCreation.ShowAsync();
         }
 
-        private void myWithdraw_Click(object sender, RoutedEventArgs e)
+        private async void myWithdraw_Click(object sender, RoutedEventArgs e)
         {
-            decimal.TryParse(withdrawBox.Text, out decimal amount);
-            AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
+            bool success = false;
+            decimal amount = 0;
+            if (accountList.SelectedIndex != -1)
+            {
+                decimal.TryParse(withdrawBox.Text, out amount);
+                success = AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
+            }
+            MessageDialog withdraw;
+            if (success)
+            {
+                withdraw = new MessageDialog($"{amount} SEK withdrawn", "Withdrawal successful!");
+            }
+            else
+            {
+                withdraw = new MessageDialog("Withdraw failed...");
+            }
+            await withdraw.ShowAsync();
         }
 
-        private void myDeposit_Click(object sender, RoutedEventArgs e)
+        private async void myDeposit_Click(object sender, RoutedEventArgs e)
         {
-            decimal.TryParse(depositBox.Text, out decimal amount);
-            AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);
+            bool success = false;
+            decimal amount = 0;
+            if (accountList.SelectedIndex != -1)
+            {
+                decimal.TryParse(depositBox.Text, out amount);
+                success = AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);                
+            }            
+            MessageDialog deposit;
+            if (success)
+            {
+                deposit = new MessageDialog($"{amount} SEK Deposited", "Deposit Successful!");
+            }
+            else
+            {
+                deposit = new MessageDialog("Deposit failed...");
+            }
+            await deposit.ShowAsync();     
         }
         private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog msg = new MessageDialog("Remove account permanently?", "Remove account");
-
-            msg.Commands.Clear();
-            msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
-            msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
-
-            var result = await msg.ShowAsync();
-
-            if ((int)result.Id == 0)
+            if (accountList.SelectedItem != null)
             {
-                var selected = accountList.SelectedItem;
+                MessageDialog msg = new MessageDialog("Remove account permanently?", "Remove account");
 
-                string rate = AccountLogic.CloseAccount((Account)selected, customer);
+                msg.Commands.Clear();
+                msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
 
-                MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
+                var result = await msg.ShowAsync();
 
-                var result2 = await msg2.ShowAsync();
+                if ((int)result.Id == 0)
+                {
+                    var selected = accountList.SelectedItem;
 
-            }
+                    string rate = AccountLogic.CloseAccount((Account)selected, customer);
+
+                    MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
+
+                    var result2 = await msg2.ShowAsync();
+
+                }
+            }                    
         }
     }
 }
