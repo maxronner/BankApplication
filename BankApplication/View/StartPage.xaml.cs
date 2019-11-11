@@ -33,10 +33,6 @@ namespace BankApplication
             this.Frame.Navigate(typeof(StartPage));
         }
 
-        private void myStartButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(CustomerListPage));
-        }
 
         private void myExitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -52,13 +48,13 @@ namespace BankApplication
             
             if (success)
             {
-                Frame.Navigate(typeof(AccountPage));
+                Frame.Navigate(typeof(CustomerListPage));
             }
             else
             {
-                MessageDialog logincreation;
+                MessageDialog logincreation = new MessageDialog("Wrong username or password", "Login failure");
                 {
-                    logincreation = new MessageDialog("Fel användarnamn eller lösenord");
+                    logincreation.Commands.Add(new UICommand { Label = "OK"});
                 }
                 await logincreation.ShowAsync();
             }
