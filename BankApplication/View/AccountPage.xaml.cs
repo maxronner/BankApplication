@@ -28,15 +28,9 @@ namespace BankApplication
         public AccountPage()
         {
             this.InitializeComponent();
-            //  this.mySSN.Text=
         }
 
-        private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void myHome_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(StartPage));
         }
@@ -58,11 +52,6 @@ namespace BankApplication
         {
             object selected = accountList.SelectedItem;
             this.Frame.Navigate(typeof(TransactionsPage), selected);
-        }
-
-        private void customerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void addSavings_Click(object sender, RoutedEventArgs e)
