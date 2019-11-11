@@ -11,11 +11,11 @@ namespace BankApplication
         public long AccountID { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
-        public bool TransactionType { get; set; }
+        public string TransactionType { get; set; }
         public decimal Amount { get; set; }
         public decimal NewBalance { get; set; }
 
-        public Transaction(long accountID, bool transactionType, decimal amount, decimal newBalance)
+        public Transaction(long accountID, string transactionType, decimal amount, decimal newBalance)
         {
             AccountID = accountID;
             TransactionType = transactionType;
@@ -26,7 +26,7 @@ namespace BankApplication
         }
         public string Summary
         {
-            get { return $"{Time}\t{AccountID}\t{TransactionType}\t{Amount}\t{NewBalance}"; }
+            get { return $"{Time}\tAccount ID: {AccountID}\t{TransactionType}\t\tAmount: {Amount}\t Remaining balance: {NewBalance}"; }
         }
     }
 }

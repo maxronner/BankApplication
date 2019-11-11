@@ -37,19 +37,20 @@ namespace BankApplication
 
         private async void myRemove_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog msg = new MessageDialog("Remove customer permanently?", "Remove customer");
-
-            msg.Commands.Clear();
-            msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
-            msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
-
-            var result = await msg.ShowAsync();
-
-            if ((int)result.Id == 0)
+            if (customerList.SelectedItem != null)
             {
-                var selected = customerList.SelectedItem;
+                MessageDialog msg = new MessageDialog("Remove customer permanently?", "Remove customer");
 
-                CustomerLogic.RemoveCustomer((Customer)selected);
+                msg.Commands.Clear();
+                msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
+
+                var result = await msg.ShowAsync();
+
+                if ((int)result.Id == 0)
+                {
+                    CustomerLogic.RemoveCustomer((Customer) customerList.SelectedItem);
+                }
             }
         }
 
@@ -76,24 +77,37 @@ namespace BankApplication
         }
         private void myView_Click(object sender, RoutedEventArgs e)
         {
-            var selected = customerList.SelectedItem;
-            this.Frame.Navigate(typeof(AccountPage), selected);
+            if (customerList.SelectedItem is Customer customer)
+            this.Frame.Navigate(typeof(AccountPage), customer);
         }
 
-        private void printCustomerButton_Click(object sender, RoutedEventArgs e)
+        private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
 
-            new FileLogic().PrintCustomersInfo();
+            //new FileLogic().PrintCustomersInfo();
 
+            MessageDialog PrintCustomers = new MessageDialog($"Customers were printed to file", "Customers Printed Successfully!");
+            var result = await PrintCustomers.ShowAsync();
         }
 
-        private void addCustomer_Click(object sender, RoutedEventArgs e)
+        private async void addCustomer_Click(object sender, RoutedEventArgs e)
         {
-            string name = "";
-            name = this.accountNameBox.Text;
-            long ssn;
-            ssn = Convert.ToInt64(this.accountSSNBox.Text);
-            CustomerLogic.AddCustomer(name, ssn);
+            bool success = false;
+
+            if (long.TryParse(accountSSNBox.Text, out long ssn))
+            {
+                success = CustomerLogic.AddCustomer(accountNameBox.Text, ssn);
+            }                    
+            MessageDialog customerCreation;
+            if (success)
+            {
+            customerCreation = new MessageDialog($"Name: {accountNameBox.Text}\nSSN: {ssn}", "Customer Created Successfully!");
+            }
+            else
+            {
+            customerCreation = new MessageDialog("Customer creation failed...");
+            }            
+            await customerCreation.ShowAsync();
         }
     }
 }
