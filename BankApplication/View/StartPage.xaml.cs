@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
+using System.Windows.Input;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,11 +42,12 @@ namespace BankApplication
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
 
             bool success = false;
             success = CustomerLogic.Login(UsernameBox.Text, PasswordBox.Password);
-            
+
+
             if (success)
             {
                 Frame.Navigate(typeof(CustomerListPage));
@@ -54,11 +56,37 @@ namespace BankApplication
             {
                 MessageDialog logincreation = new MessageDialog("Wrong username or password", "Login failure");
                 {
-                    logincreation.Commands.Add(new UICommand { Label = "OK"});
+                    logincreation.Commands.Add(new UICommand { Label = "OK" });
+
                 }
                 await logincreation.ShowAsync();
             }
 
+        }
+
+
+        private async void PasswordBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            bool success = false;
+            success = CustomerLogic.Login(UsernameBox.Text, PasswordBox.Password);
+
+            if (e.Key == Windows.System.VirtualKey.Enter && success)
+            {
+                Frame.Navigate(typeof(CustomerListPage));
+            }
+            else if(e.Key == Windows.System.VirtualKey.Enter && !success)
+            {
+                MessageDialog logincreation = new MessageDialog("Wrong username or password", "Login failure");
+                {
+                    logincreation.Commands.Add(new UICommand { Label = "OK" });
+                }
+                await logincreation.ShowAsync();
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CustomerListPage));
         }
     }
 }
