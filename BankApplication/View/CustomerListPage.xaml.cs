@@ -116,5 +116,10 @@ namespace BankApplication
         {
 
         }
+
+        private void mySearchBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

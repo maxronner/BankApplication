@@ -6,9 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="Light">
 
-    <Grid Background="#FFDDDADA">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -36,7 +37,7 @@
         <Button x:Name="myExitButton"  Content="Exit" FontSize="21" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="myExitButton_Click"/>
         <TextBox x:Name="UsernameBox" Grid.Row="2" Grid.Column="3" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" TextAlignment="Left" PlaceholderText="Username"/>
         <Button x:Name="LoginButton" Content="Log in"  Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Click="LoginButton_Click" FontSize="21"/>
-        <PasswordBox x:Name="PasswordBox" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center" PlaceholderText="Password"/>
     </Grid>
 
 </Page>

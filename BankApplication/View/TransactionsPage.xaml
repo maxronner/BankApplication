@@ -6,39 +6,48 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="Light">
 
-        <Grid Background="#FFDDDADA">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            
-            <GridView x:Name="myHeader" Grid.ColumnSpan="7" Grid.Row="0" VerticalAlignment="Stretch" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Background="#FFC5C2C2"/>
-        <Button x:Name="myBack" Content="Back"  FontSize="20" Foreground="#FF484747" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="myBack_Click"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GridView x:Name="myHeader" Grid.ColumnSpan="7" Grid.Row="0" VerticalAlignment="Stretch" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Background="#FFC5C2C2"/>
+        <Button x:Name="myBack" Content="Back"  FontSize="20" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="myBack_Click"/>
         <TextBlock x:Name="myLogo" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Text="Newton Bank" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="115" Width="470" FontSize="72" Foreground="#FFE7DCDC" FontFamily="Frank Ruhl Hofshi"/>
         <Button x:Name="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" Opacity="0" Click="Button_Click"/>
         <ListView x:Name="myTransaction" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" ItemsSource="{x:Bind account.Transactions}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Transaction">
-                    <TextBlock Text="{x:Bind Summary}">
-                    </TextBlock>
+
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind DisplayAccID}" Style="{ThemeResource BaseTextBlockStyle}" FontSize="20"/>
+                        <TextBlock Text="{x:Bind DisplayTime}" FontSize="15"/>
+                        <TextBlock Text="{x:Bind DisplayType}" FontSize="15"/>
+                        <TextBlock Text="{x:Bind DisplayAmount}" FontSize="15"/>
+                        <TextBlock Text="{x:Bind DisplayNewBalance}" FontSize="15"/>
+
+                    </StackPanel>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
