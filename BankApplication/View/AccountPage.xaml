@@ -6,10 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="Light">
 
 
-    <Grid Background="#FFDDDADA">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -30,12 +31,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="4" Background="#66FFFFFF" BorderThickness="2" BorderBrush="#66000000"/>
+        <StackPanel Grid.Column="1" Grid.Row="4" BorderThickness="2" BorderBrush="#66000000"/>
 
 
         <GridView x:Name="myHeader" Grid.ColumnSpan="7" Grid.Row="0" VerticalAlignment="Stretch" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Background="#FFC5C2C2"/>
-        <Button x:Name="myBack" Content="Back"  FontSize="20" Foreground="#FF484747" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="myBack_Click"/>
-        
+        <Button x:Name="myBack" Content="Back"  FontSize="20" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="myBack_Click"/>
+
         <TextBox x:Name="myCustomerName" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" TextAlignment="Center" BorderThickness="2" Text="Name:&#xD;&#xA;" TextWrapping="Wrap" FontSize="20" Foreground="#FF484747" RenderTransformOrigin="0.499,0.569"/>
         <Button x:Name="myEditName" Content="Edit name" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="2" BorderBrush="#66000000" Foreground="#FF484747" FontSize="20" Background="#337F7A7A" Click="myEditName_Click"/>
         <TextBlock x:Name="mySSN" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="4" Text="SSN: " TextWrapping="Wrap" VerticalAlignment="Stretch" FocusVisualPrimaryBrush="White" FontSize="20" Foreground="#FF484747"/>
@@ -51,8 +52,14 @@
         <ListView x:Name="accountList" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="4" ItemsSource="{x:Bind customer.Accounts}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Account">
-                    <TextBlock Text="{x:Bind Summary}">
-                    </TextBlock>
+
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind DisplayAccID}" Style="{ThemeResource BaseTextBlockStyle}" FontSize="20"/>
+                        <TextBlock Text="{x:Bind DisplayInterest}" FontSize="15"/>
+                        <TextBlock Text="{x:Bind DisplayBalance}" FontSize="15"/>
+                        <TextBlock Text="{x:Bind DisplayAccType}" FontSize="15"/>
+                    </StackPanel>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
