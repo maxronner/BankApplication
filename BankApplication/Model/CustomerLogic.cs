@@ -20,17 +20,25 @@ namespace BankApplication
             new Customer(9912020873, "Carl-Johan Sterner"),
             new Customer(0111161209, "Eddy")
             };
-       
+        public static bool CustomerExists (long ssn)
+        {
+            foreach (Customer customer in Customers)
+            {
+                if (customer.SSN == ssn)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static bool AddCustomer(string name, long ssn)
         {
-            if (Customers.Contains(new Customer(ssn, name)))
+            if (CustomerExists(ssn))
             {
-
                 return false;
             }
             else
             {
-
                 Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");
                 MatchCollection matches = regexLetters.Matches(name);
 
