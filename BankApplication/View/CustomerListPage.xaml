@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <GridView x:Name="myHeader" Grid.ColumnSpan="7" Grid.Row="0" VerticalAlignment="Stretch" BorderBrush="#FF484747" Background="#FFC5C2C2" BorderThickness="1,1,1,1"/>
-        <Button x:Name="myBack" Content="Back"  FontSize="20" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="myBack_Click"/>
+        <Button x:Name="myBack" Content="Log Out"  FontSize="20" BorderBrush="#FF484747" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="myBack_Click"/>
         <TextBlock x:Name="myLogo" TextAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="5" Text="Newton Bank" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="115" Width="470" FontSize="72" Foreground="#FFE7DCDC" FontFamily="Frank Ruhl Hofshi"/>
         <Button x:Name="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" Opacity="0" Click="myHome_Click"/>
         <ListView x:Name="customerList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="4" ItemsSource="{x:Bind customers}" Margin="213,0,0,0" FontSize="14">
