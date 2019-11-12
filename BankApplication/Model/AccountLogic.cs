@@ -62,25 +62,48 @@ namespace BankApplication
 
         public static bool Withdraw(Account account, decimal amount)
         {
-            if (account.Balance >= amount)
+            switch (account)
             {
-                account.Balance -= amount;
-                account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
-                return true;
+                case SavingsAccount savings1 when savings1.FreeWithdraw == true && savings1.Balance - amount > 0:
+                    account.Balance -= amount;
+                    account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
+                    return true;
+                case SavingsAccount savings2 when savings2.FreeWithdraw == false && savings2.Balance - amount > 0:
+                    account.Balance -= amount * (decimal)savings2.WithdrawFee;
+                    account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
+                    return true;
+                case CreditAccount creditAccount when creditAccount.CreditLimit + creditAccount.Balance - amount > 0:
+                    account.Balance -= amount;
+                    account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
+                    return true;
+                default:
+                    return false;
             }
-            return false;
         }
-
         public static string CloseAccount(Account account, Customer customer)
         {
-            if (account != null)
-            {
+            string deletedAccount = "null...";
 
-                string deletedAccount = $"Account balance: {account.Balance} Account rate: {account.Interest*100}%";
-                customer.Accounts.Remove(account);
-                return deletedAccount;
+            switch (account)
+            {
+                case CreditAccount creditNegative when creditNegative.Balance < 0:
+                    account.Balance += account.Balance * (decimal)creditNegative.DebtInterest;
+                    deletedAccount = $"Account balance: {account.Balance} Debt rate: {creditNegative.DebtInterest * 100}%";
+                    customer.Accounts.Remove(account);
+                    return deletedAccount;
+                case CreditAccount creditPositive when creditPositive.Balance > 0:
+                    account.Balance *= (1 + (decimal)creditPositive.Interest);
+                    deletedAccount = $"Account balance: {account.Balance} Account rate: {account.Interest * 100}%";
+                    customer.Accounts.Remove(account);
+                    return deletedAccount;
+                case SavingsAccount savings:
+                    account.Balance *= (1 + (decimal)savings.Interest);
+                    deletedAccount = $"Account balance: {account.Balance} Account rate: {account.Interest * 100}%";
+                    customer.Accounts.Remove(account);
+                    return deletedAccount;
+                default:
+                    return deletedAccount;
             }
-            return null;
         }
 
         public static int AddCreditAccount(Customer customer)

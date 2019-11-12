@@ -36,7 +36,7 @@ namespace BankApplication
         }
         private void myHome_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(StartPage));
+            Frame.Navigate(typeof(StartPage));
         }
 
         private void myBack_Click(object sender, RoutedEventArgs e)
@@ -49,64 +49,45 @@ namespace BankApplication
             customer = (Customer)e.Parameter;
             if (customer != null)
             {               
-                this.mySSN.Text = customer.SSN.ToString();
-                this.myCustomerName.Text = customer.Name;
+                mySSN.Text = customer.SSN.ToString();
+                myCustomerName.Text = customer.Name;
             }
         }
-
         private void myTransactions_Click(object sender, RoutedEventArgs e)
         {
             if (accountList.SelectedItem != null)
-            this.Frame.Navigate(typeof(TransactionsPage), accountList.SelectedItem);
+            Frame.Navigate(typeof(TransactionsPage), accountList.SelectedItem);
         }
-
         private void customerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-
         private async void addSavings_Click(object sender, RoutedEventArgs e)
         {
-            int accountID = AccountLogic.AddSavingsAccount(customer);
-
-            MessageDialog SavingsAccCreation = new MessageDialog($"Account ID: {accountID}", "Savings Account Created!");
-            var result = await SavingsAccCreation.ShowAsync();
+            MessageDialog SavingsAccCreation = new MessageDialog($"Account ID: {AccountLogic.AddSavingsAccount(customer)}", "Savings Account Created!");
+            await SavingsAccCreation.ShowAsync();
         }
-
         private async void myEditName_Click(object sender, RoutedEventArgs e)
         {
-            bool success = false;
-
-           
-
-            success = CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text);
-
-            if (!success)
+            if (!CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text))
             {
                 MessageDialog msg = new MessageDialog("You can only enter letters.", "Error!");
                 myCustomerName.Text = "Enter Name";
-                var result = await msg.ShowAsync();
+                await msg.ShowAsync();
             }
             else
             {
                 MessageDialog msg2 = new MessageDialog($"Name was changed to {myCustomerName.Text}. ","Name Change Successful!");
-                var result2 = await msg2.ShowAsync();
+                await msg2.ShowAsync();
             }
-
-
-
             MessageDialog NameChange = new MessageDialog($"New Name: {myCustomerName.Text}", "Name Was Changed Successfully!");
-            var result = await NameChange.ShowAsync();
-
+            await NameChange.ShowAsync();
         }
 
         private async void addCredit_Click(object sender, RoutedEventArgs e)
         {
-           int accountID = AccountLogic.AddCreditAccount(customer);
-
-           
-            MessageDialog CreditAccCreation = new MessageDialog($"Account ID: {accountID}" , "Credit Account Created!");
-            var result = await CreditAccCreation.ShowAsync();
+            MessageDialog CreditAccCreation = new MessageDialog($"Account ID: {AccountLogic.AddCreditAccount(customer)}" , "Credit Account Created!");
+            await CreditAccCreation.ShowAsync();
         }
 
         private async void myWithdraw_Click(object sender, RoutedEventArgs e)
@@ -164,13 +145,9 @@ namespace BankApplication
 
                 if ((int)result.Id == 0)
                 {
-                    var selected = accountList.SelectedItem;
-
-                    string rate = AccountLogic.CloseAccount((Account)selected, customer);
-
+                    string rate = AccountLogic.CloseAccount((Account)accountList.SelectedItem, customer);
                     MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
-
-                    var result2 = await msg2.ShowAsync();
+                    await msg2.ShowAsync();
 
                 }
             }                    

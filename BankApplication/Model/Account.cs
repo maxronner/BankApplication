@@ -14,7 +14,7 @@ namespace BankApplication
         public double Interest { get; set; }
         public int AccountID { get; set; } //MÅSTE VARA UNIKT
 
-        public Account(long balance, double interest)
+        public Account(decimal balance, double interest)
         {
             Balance = balance;
             Interest = interest;
