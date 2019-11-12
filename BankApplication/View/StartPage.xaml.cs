@@ -63,8 +63,6 @@ namespace BankApplication
             }
 
         }
-
-
         private async void PasswordBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             bool success = false;
@@ -82,11 +80,6 @@ namespace BankApplication
                 }
                 await logincreation.ShowAsync();
             }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CustomerListPage));
         }
     }
 }

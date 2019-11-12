@@ -48,11 +48,11 @@
         </ListView>
         <Button x:Name="myView" Content="View" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" Click="myView_Click" FontSize="20" BorderBrush="#FF737373"/>
         <Button x:Name="addCustomer" Content="Add Customer" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Stretch" FontSize="20" BorderBrush="#FF737373" Click="addCustomer_Click"  VerticalAlignment="Top"/>
-        <TextBox x:Name="accountNameBox"  Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" BorderBrush="#FF737373" TextChanged="mySearchBox_TextChanged" FontSize="18" PlaceholderText="Name" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="accountSSNBox"  Grid.Column="3" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" BorderBrush="#FF737373" TextChanged="mySearchBox_TextChanged" FontSize="18" PlaceholderText="SSN"/>
+        <TextBox x:Name="accountNameBox"  Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" BorderBrush="#FF737373" FontSize="18" PlaceholderText="Name" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="accountSSNBox"  Grid.Column="3" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" BorderBrush="#FF737373" FontSize="18" PlaceholderText="SSN"/>
         <Button x:Name="myRemove" Content="Remove" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" FontSize="20" BorderBrush="#FF737373" Click="myRemove_Click"/>
         <Button x:Name="mySearch" Content="Search" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" BorderBrush="#FF737373" Click="mySearch_Click" />
-        <TextBox x:Name="mySearchBox" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="" TextWrapping="Wrap" FontSize="18" BorderBrush="#FF737373" TextChanged="mySearchBox_TextChanged_1"/>
+        <TextBox x:Name="mySearchBox" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="" TextWrapping="Wrap" FontSize="18" BorderBrush="#FF737373"/>
         <Button x:Name="printCustomerButton" Content="Print" Grid.Column="5"  Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="80" Width="150" Click="printCustomerButton_Click" FontSize="21" BorderBrush="#FF737373"/>
     </Grid>
 

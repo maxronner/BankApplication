@@ -13,8 +13,7 @@ namespace BankApplication
             if (customer != null)
             {
                 customer.Accounts.Add(new SavingsAccount(0.01));
-                var account = customer.Accounts.Last();
-                return account.AccountID;
+                return customer.Accounts.Last().AccountID;
             }
             return -1;
         }
@@ -30,25 +29,6 @@ namespace BankApplication
             }
             return availableAccountID;
         }
-        public static string GetAccount(Customer customer, long accountID)
-        {
-            for (int i = 0; i < customer.Accounts.Count; i++)
-            {
-                if (customer.Accounts[i].AccountID == accountID)
-                {
-                    if (customer.Accounts[i] is SavingsAccount)
-                    {
-                        return $"{customer.Accounts[i].AccountID}{customer.Accounts[i].Balance} Savings Account {customer.Accounts[i].Interest}";
-                    }
-                    else if (customer.Accounts[i] is CreditAccount)
-                    {
-                        return $"{customer.Accounts[i].AccountID}{customer.Accounts[i].Balance} Credit Account {customer.Accounts[i].Interest}";
-                    }
-                }
-            }
-            return null;
-        }
-
         public static bool Deposit(Account account, decimal amount)
         {
             if (account != null)
@@ -59,20 +39,20 @@ namespace BankApplication
             }
             return false;
         }
-
         public static bool Withdraw(Account account, decimal amount)
         {
             switch (account)
             {
-                case SavingsAccount savings1 when savings1.FreeWithdraw == true && savings1.Balance - amount > 0:
+                case SavingsAccount savings1 when savings1.FreeWithdraw == true && savings1.Balance - amount >= 0:
                     account.Balance -= amount;
+                    savings1.FreeWithdraw = false;
                     account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
                     return true;
-                case SavingsAccount savings2 when savings2.FreeWithdraw == false && savings2.Balance - amount > 0:
+                case SavingsAccount savings2 when savings2.FreeWithdraw == false && savings2.Balance - amount >= 0:
                     account.Balance -= amount * (decimal)savings2.WithdrawFee;
                     account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
                     return true;
-                case CreditAccount creditAccount when creditAccount.CreditLimit + creditAccount.Balance - amount > 0:
+                case CreditAccount creditAccount when creditAccount.CreditLimit + creditAccount.Balance - amount >= 0:
                     account.Balance -= amount;
                     account.Transactions.Add(new Transaction(account.AccountID, "Withdrawal", amount, account.Balance));
                     return true;
@@ -111,20 +91,9 @@ namespace BankApplication
             if (customer != null)
             {
                 customer.Accounts.Add(new CreditAccount());
-                var account = customer.Accounts.Last();
-                return account.AccountID;
+                return customer.Accounts.Last().AccountID;
             }
             return -1;
-        }
-
-        public static List<string> GetTransactions(Account account)
-        {
-            List<string> allTransactions = new List<string>();
-            foreach (var temp in account.Transactions)
-            {
-                allTransactions.Add($"{temp.Time}, {temp.TransactionType}, {temp.Amount}, {temp.NewBalance}");
-            }
-            return allTransactions;
         }
     }
 }

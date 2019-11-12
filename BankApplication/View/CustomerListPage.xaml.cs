@@ -53,7 +53,6 @@ namespace BankApplication
                 }
             }
         }
-
         private void mySearch_Click(object sender, RoutedEventArgs e)
         {
             var input = mySearchBox.Text;
@@ -69,11 +68,6 @@ namespace BankApplication
                 }
 
             }
-        }
-
-        private void mySearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
         private void myView_Click(object sender, RoutedEventArgs e)
         {
@@ -110,16 +104,6 @@ namespace BankApplication
         private void myBack_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(StartPage));
-        }
-
-        private void mySort_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void mySearchBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

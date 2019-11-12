@@ -29,21 +29,14 @@ namespace BankApplication
         {
             this.InitializeComponent();
         }
-
-        private void myCustomerName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
         private void myHome_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(StartPage));
         }
-
         private void myBack_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             customer = (Customer)e.Parameter;
@@ -58,10 +51,6 @@ namespace BankApplication
             if (accountList.SelectedItem != null)
             Frame.Navigate(typeof(TransactionsPage), accountList.SelectedItem);
         }
-        private void customerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
         private async void addSavings_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog SavingsAccCreation = new MessageDialog($"Account ID: {AccountLogic.AddSavingsAccount(customer)}", "Savings Account Created!");
@@ -72,7 +61,8 @@ namespace BankApplication
             if (!CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text))
             {
                 MessageDialog msg = new MessageDialog("You can only enter letters.", "Error!");
-                myCustomerName.Text = "Enter Name";
+                myCustomerName.Text = "";
+                myCustomerName.PlaceholderText = "Enter Name";
                 await msg.ShowAsync();
             }
             else
@@ -81,13 +71,11 @@ namespace BankApplication
                 await msg2.ShowAsync();
             }
         }
-
         private async void addCredit_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog CreditAccCreation = new MessageDialog($"Account ID: {AccountLogic.AddCreditAccount(customer)}" , "Credit Account Created!");
             await CreditAccCreation.ShowAsync();
         }
-
         private async void myWithdraw_Click(object sender, RoutedEventArgs e)
         {
             bool success = false;
@@ -108,7 +96,6 @@ namespace BankApplication
             }
             await withdraw.ShowAsync();
         }
-
         private async void myDeposit_Click(object sender, RoutedEventArgs e)
         {
             bool success = false;

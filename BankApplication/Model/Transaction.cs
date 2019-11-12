@@ -9,7 +9,6 @@ namespace BankApplication
     public class Transaction
     {
         public long AccountID { get; set; }
-        public string Date { get; set; }
         public string Time { get; set; }
         public string TransactionType { get; set; }
         public decimal Amount { get; set; }
@@ -24,11 +23,6 @@ namespace BankApplication
             Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
         }
-        public string Summary
-        {
-            get { return $"{Time}\tAccount ID: {AccountID}\t{TransactionType}\t\tAmount: {Amount}\t Remaining balance: {NewBalance}"; }
-        }
-
         public string DisplayAccID { get { return $"Account ID: {AccountID}"; } }
         public string DisplayTime { get { return $"Time of transaction: {Time}"; } }
         public string DisplayType { get { return $"{TransactionType}"; } }

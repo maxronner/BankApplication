@@ -43,19 +43,14 @@ namespace BankApplication
                 MatchCollection matches = regexLetters.Matches(name);
 
                 //Vad används denna till?
-                Regex regexNumbers = new Regex(@"^[1-9]+$");
+                Regex regexNumbers = new Regex(@"^[0-9]+$");
                 MatchCollection matches2 = regexNumbers.Matches(ssn.ToString());
-                if (matches.Count > 0)
+                if (matches.Count > 0 && matches2.Count > 0 && ssn.ToString().Length == 10 && name != "")
                 {
                     Customers.Add(new Customer(ssn, name));
-
+                    return true;
                 }
-              
-                if(ssn.ToString().Length != 10 || name == "")
-                {
-                    return false;
-                }
-                return true;
+                return false;
             }
         }
         public static bool ChangeCustomerName(Customer customer, string name)
@@ -67,18 +62,11 @@ namespace BankApplication
                 if (matches.Count > 0)
                 {
                     customer.Name = name;
-
-                }
-                else
-                {
-                    return false;
+                    return true;
                 }
             }
-            catch (Exception)
-            {
-                return false;
-            }            
-            return true;
+            catch (Exception) { }            
+            return false;
         }
 
         public static bool Login(string username, string password)
@@ -104,10 +92,7 @@ namespace BankApplication
                 }
                 Customers.Remove(customer);
             }
-            catch (Exception)
-            {
-
-            }
+            catch (Exception) { }
             return removedCustomer;
         }  
     }
