@@ -102,7 +102,7 @@ namespace BankApplication
             }
             else
             {
-            customerCreation = new MessageDialog("Customer creation failed...");
+            customerCreation = new MessageDialog($"SSN: {ssn} already exists.","Customer Creation Failed...");
             }            
             await customerCreation.ShowAsync();
         }

@@ -17,35 +17,45 @@ namespace BankApplication
             new Customer(0111161209, "Eddy"),
             new Customer(9204021234, "Robin"),
             new Customer(2106228532, "Gunborg")
-
             };
        
         public static bool AddCustomer(string name, long ssn)
         {
-            if (Customers.Contains(new Customer(ssn, name)))
-            {
+            bool SsnExists = true;
 
-                return false;
+            foreach (Customer item in Customers)
+            {
+                if (item.SSN == ssn)
+                {
+                    return false;
+                }
+                else
+                {
+                    SsnExists = false;
+                }
             }
-            else
+            if (SsnExists == false)
             {
-
                 Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");
                 MatchCollection matches = regexLetters.Matches(name);
 
                 Regex regexNumbers = new Regex(@"^[1-9]+$");
                 MatchCollection matches2 = regexNumbers.Matches(ssn.ToString());
+
                 if (matches.Count > 0)
                 {
                     Customers.Add(new Customer(ssn, name));
                 }
-              
-                if(ssn.ToString().Length != 10 || name == "")
+
+                if (ssn.ToString().Length != 10 || name == "")
                 {
                     return false;
                 }
-                Customers.Add(new Customer(ssn, name));
                 return true;
+            }
+            else
+            {
+                return false;
             }
         }
         public static bool ChangeCustomerName(Customer customer, string name)

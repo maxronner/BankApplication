@@ -92,12 +92,6 @@ namespace BankApplication
                 MessageDialog msg2 = new MessageDialog($"Name was changed to {myCustomerName.Text}. ","Name Change Successful!");
                 var result2 = await msg2.ShowAsync();
             }
-
-
-
-            MessageDialog NameChange = new MessageDialog($"New Name: {myCustomerName.Text}", "Name Was Changed Successfully!");
-            var result = await NameChange.ShowAsync();
-
         }
 
         private async void addCredit_Click(object sender, RoutedEventArgs e)
