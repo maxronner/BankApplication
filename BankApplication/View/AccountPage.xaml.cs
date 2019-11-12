@@ -77,8 +77,6 @@ namespace BankApplication
         {
             CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text);
 
-            MessageDialog NameChange = new MessageDialog($"New Name: {myCustomerName.Text}", "Name Was Changed Successfully!");
-            var result = await NameChange.ShowAsync();
 
         }
 

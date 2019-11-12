@@ -35,8 +35,9 @@
         <Button x:Name="myHome" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0"  Click="Button_Click" Opacity="0"/>
         <Button x:Name="myExitButton"  Content="Exit" FontSize="21" Grid.Column="0"  Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="myExitButton_Click"/>
         <TextBox x:Name="UsernameBox" Grid.Row="2" Grid.Column="3" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" TextAlignment="Left" PlaceholderText="Username"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center" KeyDown="PasswordBox_KeyDown"/>
         <Button x:Name="LoginButton" Content="Log in"  Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Click="LoginButton_Click" FontSize="21"/>
-        <PasswordBox x:Name="PasswordBox" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center"/>
+       
     </Grid>
 
 </Page>

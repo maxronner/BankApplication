@@ -62,6 +62,7 @@ namespace BankApplication
 
         public static bool Withdraw(Account account, decimal amount)
         {
+       
             if (account.Balance >= amount)
             {
                 account.Balance -= amount;
@@ -70,6 +71,8 @@ namespace BankApplication
             }
             return false;
         }
+
+
 
         public static string CloseAccount(Account account, Customer customer)
         {
