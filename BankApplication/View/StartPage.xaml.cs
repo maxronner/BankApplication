@@ -83,5 +83,10 @@ namespace BankApplication
                 await logincreation.ShowAsync();
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CustomerListPage));
+        }
     }
 }
