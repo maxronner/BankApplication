@@ -111,5 +111,15 @@ namespace BankApplication
         {
             Frame.Navigate(typeof(StartPage));
         }
+
+        private void mySort_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mySearchBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

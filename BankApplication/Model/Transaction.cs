@@ -28,5 +28,11 @@ namespace BankApplication
         {
             get { return $"{Time}\tAccount ID: {AccountID}\t{TransactionType}\t\tAmount: {Amount}\t Remaining balance: {NewBalance}"; }
         }
+
+        public string DisplayAccID { get { return $"Account ID: {AccountID}"; } }
+        public string DisplayTime { get { return $"Time of transaction: {Time}"; } }
+        public string DisplayType { get { return $"{TransactionType}"; } }
+        public string DisplayAmount { get { return $"Amount: {Amount} SEK"; } }
+        public string DisplayNewBalance { get { return $"Balance: {NewBalance} SEK"; } }
     }
 }

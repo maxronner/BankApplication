@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BankApplication
@@ -11,27 +12,49 @@ namespace BankApplication
     {
         public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer> 
             {
-            new Customer(8409039567, "Anders"),
-            new Customer(7812230654, "Olle"),
-            new Customer(0111161209, "Eddy"),
-            new Customer(9204021234, "Robin"),
-            new Customer(2106228532, "Gunborg")
-
+            new Customer(8409039567, "Lars-Åke Cederlund"),
+            new Customer(7812230654, "Florence Liljedahl"),
+            new Customer(7112151688, "Henrietta Malmborg"),
+            new Customer(9204021234, "Veronica Smedberg-Bolander"),
+            new Customer(9301200938, "Maj Sahlén"),
+            new Customer(9912020873, "Carl-Johan Sterner"),
+            new Customer(0111161209, "Eddy")
             };
-       
+        public static bool CustomerExists (long ssn)
+        {
+            foreach (Customer customer in Customers)
+            {
+                if (customer.SSN == ssn)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static bool AddCustomer(string name, long ssn)
         {
-            if (Customers.Contains(new Customer(ssn, name)))
+            if (CustomerExists(ssn))
             {
                 return false;
             }
             else
             {
+                Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");
+                MatchCollection matches = regexLetters.Matches(name);
+
+                //Vad används denna till?
+                Regex regexNumbers = new Regex(@"^[1-9]+$");
+                MatchCollection matches2 = regexNumbers.Matches(ssn.ToString());
+                if (matches.Count > 0)
+                {
+                    Customers.Add(new Customer(ssn, name));
+
+                }
+              
                 if(ssn.ToString().Length != 10 || name == "")
                 {
                     return false;
                 }
-                Customers.Add(new Customer(ssn, name));
                 return true;
             }
         }
@@ -39,7 +62,17 @@ namespace BankApplication
         {
             try
             {
-                customer.Name = name;
+                Regex regex = new Regex(@"^[a-öA-Ö]+$");
+                MatchCollection matches = regex.Matches(name);
+                if (matches.Count > 0)
+                {
+                    customer.Name = name;
+
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception)
             {
@@ -76,9 +109,6 @@ namespace BankApplication
 
             }
             return removedCustomer;
-            
-
-          
         }  
     }
 }

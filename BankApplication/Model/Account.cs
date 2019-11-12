@@ -14,7 +14,7 @@ namespace BankApplication
         public double Interest { get; set; }
         public int AccountID { get; set; } //MÅSTE VARA UNIKT
 
-        public Account(long balance, double interest)
+        public Account(decimal balance, double interest)
         {
             Balance = balance;
             Interest = interest;
@@ -22,8 +22,12 @@ namespace BankApplication
         }
         public string Summary
         {
-            get { return $"{AccountID} \t {Balance} \t {Interest*100}% \t {GetType().Name}"; }
+            get { return $"{AccountID} \t {Balance} \t {Interest * 100}% \t {GetType().Name}"; }
         }
-        //to string
+
+        public string DisplayAccID { get { return $"Account ID: {AccountID}"; } }
+        public string DisplayInterest { get { return $"Interest: {Interest*100}%"; } }
+        public string DisplayBalance{ get { return $"Account balance: {Balance} SEK"; } }
+        public string DisplayAccType { get { return $"Account type: {GetType().Name}"; } }
     }
 }
