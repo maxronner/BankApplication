@@ -89,6 +89,7 @@ namespace BankApplication
             if (success)
             {
                 withdraw = new MessageDialog($"{amount} SEK withdrawn", "Withdrawal successful!");
+                Frame.Navigate(typeof(AccountPage), customer);
             }
             else
             {
@@ -109,12 +110,13 @@ namespace BankApplication
             if (success)
             {
                 deposit = new MessageDialog($"{amount} SEK Deposited", "Deposit Successful!");
+                Frame.Navigate(typeof(AccountPage), customer);
             }
             else
             {
                 deposit = new MessageDialog("Deposit failed...");
             }
-            await deposit.ShowAsync();     
+            await deposit.ShowAsync();
         }
         private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
         {
@@ -137,5 +139,6 @@ namespace BankApplication
                 }
             }                    
         }
+        
     }
 }

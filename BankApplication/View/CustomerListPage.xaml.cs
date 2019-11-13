@@ -58,7 +58,6 @@ namespace BankApplication
             var input = mySearchBox.Text;
             long.TryParse(input, out long result);
 
-
             for (int i = 0; i < customers.Count; i++)
             {
                 if (result == customers[i].SSN || input == customers[i].Name)
@@ -66,7 +65,6 @@ namespace BankApplication
                     var selected = customers[i];
                     Frame.Navigate(typeof(AccountPage), selected);
                 }
-
             }
         }
         private void myView_Click(object sender, RoutedEventArgs e)
