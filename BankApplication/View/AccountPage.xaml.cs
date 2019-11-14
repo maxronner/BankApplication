@@ -60,9 +60,9 @@ namespace BankApplication
         {
             if (!CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text))
             {
-                MessageDialog msg = new MessageDialog("You can only enter letters.", "Error!");
+                MessageDialog msg = new MessageDialog("You can only enter letters", "Type your new name");
                 myCustomerName.Text = "";
-                myCustomerName.PlaceholderText = "Enter Name";
+                myCustomerName.PlaceholderText = "Enter name";
                 await msg.ShowAsync();
             }
             else
@@ -82,7 +82,7 @@ namespace BankApplication
             decimal amount = 0;
             if (accountList.SelectedIndex != -1)
             {
-                decimal.TryParse(withdrawBox.Text, out amount);
+                decimal.TryParse(amountBox.Text, out amount);
                 success = AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
             }
             MessageDialog withdraw;
@@ -103,7 +103,7 @@ namespace BankApplication
             decimal amount = 0;
             if (accountList.SelectedIndex != -1)
             {
-                decimal.TryParse(depositBox.Text, out amount);
+                decimal.TryParse(amountBox.Text, out amount);
                 success = AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);                
             }            
             MessageDialog deposit;
