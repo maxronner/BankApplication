@@ -49,7 +49,10 @@ namespace BankApplication
 
                 if ((int)result.Id == 0)
                 {
-                    CustomerLogic.RemoveCustomer((Customer) customerList.SelectedItem);
+                    Customer temp = (Customer)customerList.SelectedItem;
+                    MessageDialog remove = new MessageDialog(CustomerLogic.RemoveCustomer(temp),
+                        $"Customer {temp.Name} was removed.");
+                    await remove.ShowAsync();
                 }
             }
         }
@@ -58,7 +61,6 @@ namespace BankApplication
             var input = mySearchBox.Text;
             long.TryParse(input, out long result);
 
-
             for (int i = 0; i < customers.Count; i++)
             {
                 if (result == customers[i].SSN || input == customers[i].Name)
@@ -66,7 +68,6 @@ namespace BankApplication
                     var selected = customers[i];
                     Frame.Navigate(typeof(AccountPage), selected);
                 }
-
             }
         }
         private void myView_Click(object sender, RoutedEventArgs e)
@@ -77,8 +78,10 @@ namespace BankApplication
 
         private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog PrintCustomers = new MessageDialog($"Customers were printed to file", "Customers Printed Successfully!");
-            var result = await PrintCustomers.ShowAsync();
+            new FileLogic().PrintCustomersInfo();
+            MessageDialog PrintCustomers = new MessageDialog($"Transactions were printed to C:'\'Users'\'USER'\'AppData'\'Local'\'Packages", 
+                "Customer information printed!");
+            await PrintCustomers.ShowAsync();
         }
 
         private async void addCustomer_Click(object sender, RoutedEventArgs e)

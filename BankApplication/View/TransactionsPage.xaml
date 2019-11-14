@@ -51,7 +51,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="myPrint" BorderThickness="2" Content="Print" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#337F7A7A" BorderBrush="#66000000" Foreground="#FF484747" FontSize="20" Click="myPrint_Click"/>
+        <Button x:Name="myPrint" BorderThickness="2" Content="Save to file" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#337F7A7A" BorderBrush="#66000000" Foreground="#FF484747" FontSize="20" Click="myPrint_Click"/>
 
     </Grid>
 </Page>

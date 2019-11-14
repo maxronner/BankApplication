@@ -31,7 +31,7 @@ namespace BankApplication
         }
         public static bool Deposit(Account account, decimal amount) // deposit till valt konto samt lagrar transaktionen i Transactions som ligger i Account
         {
-            if (account != null)
+            if (account != null && amount > 0)
             {
                 account.Balance += amount;
                 account.Transactions.Add(new Transaction(account.AccountID, "Deposit", amount, account.Balance));
@@ -41,6 +41,10 @@ namespace BankApplication
         }
         public static bool Withdraw(Account account, decimal amount) // withdraw för valt konto samt lagrar transaktionen i Transactions som ligger i Account
         {
+            if(amount == 0)
+            {
+                return false;
+            }
             switch (account)
             {
                 case SavingsAccount savings1 when savings1.FreeWithdraw == true && savings1.Balance - amount >= 0: // uttag savings, efter första fria uttaget -> bool blir false
@@ -60,29 +64,26 @@ namespace BankApplication
                     return false;
             }
         }
-        public static string CloseAccount(Account account, Customer customer) // stänger ett konto, beräknar ränta
+        public static string PrintAccountInfo(Account account)
         {
-            string deletedAccount = "null...";
+            string info = "null...";
 
             switch (account)
             {
                 case CreditAccount creditNegative when creditNegative.Balance < 0: // credit med negativt saldo, skuldränta
                     account.Balance += account.Balance * (decimal)creditNegative.DebtInterest;
-                    deletedAccount = $"Account balance: {account.Balance} Debt rate: {creditNegative.DebtInterest * 100}%";
-                    customer.Accounts.Remove(account);
-                    return deletedAccount;
-                case CreditAccount creditPositive when creditPositive.Balance > 0: //credit 
-                    account.Balance *= (1 + (decimal)creditPositive.Interest);
-                    deletedAccount = $"Account balance: {account.Balance} Account rate: {account.Interest * 100}%";
-                    customer.Accounts.Remove(account);
-                    return deletedAccount;
-                case SavingsAccount savings:                                    // savings
-                    account.Balance *= (1 + (decimal)savings.Interest);
-                    deletedAccount = $"Account balance: {account.Balance} Account rate: {account.Interest * 100}%";
-                    customer.Accounts.Remove(account);
-                    return deletedAccount;
+                    info = $"AccountID: {account.AccountID} Account Type: {account.GetType().Name}\n" +
+                        $"Account balance: {account.Balance} Debt rate: {creditNegative.DebtInterest * 100}%";
+                    return info;
+                case SavingsAccount _:
+                case CreditAccount _ when account.Balance >= 0:
+                    account.Balance *= (1 + (decimal)account.Interest);
+                    info = $"AccountID: {account.AccountID} Account Type: {account.GetType().Name}\n" + 
+                        $"Account balance: {account.Balance} Account rate: {account.Interest * 100}%";
+                    return info;
                 default:
-                    return deletedAccount;          //returnerar kontouppgifterna
+                    return info;
+
             }
         }
 

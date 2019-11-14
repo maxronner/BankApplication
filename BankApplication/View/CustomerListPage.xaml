@@ -53,7 +53,7 @@
         <Button x:Name="myRemove" Content="Remove" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" FontSize="20" BorderBrush="#FF737373" Click="myRemove_Click"/>
         <Button x:Name="mySearch" Content="Search" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" BorderBrush="#FF737373" Click="mySearch_Click" />
         <TextBox x:Name="mySearchBox" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="" TextWrapping="Wrap" FontSize="18" BorderBrush="#FF737373"/>
-        <Button x:Name="printCustomerButton" Content="Print" Grid.Column="5"  Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="80" Width="150" Click="printCustomerButton_Click" FontSize="21" BorderBrush="#FF737373"/>
+        <Button x:Name="printCustomerButton" Content="Save to file" Grid.Column="4"  Grid.Row="6"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Click="printCustomerButton_Click" FontSize="20" BorderBrush="#FF737373"/>
     </Grid>
 
 </Page>

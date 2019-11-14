@@ -60,9 +60,9 @@ namespace BankApplication
         {
             if (!CustomerLogic.ChangeCustomerName(customer, myCustomerName.Text))
             {
-                MessageDialog msg = new MessageDialog("You can only enter letters.", "Error!");
+                MessageDialog msg = new MessageDialog("You can only enter letters", "Type your new name");
                 myCustomerName.Text = "";
-                myCustomerName.PlaceholderText = "Enter Name";
+                myCustomerName.PlaceholderText = "Enter name";
                 await msg.ShowAsync();
             }
             else
@@ -82,13 +82,15 @@ namespace BankApplication
             decimal amount = 0;
             if (accountList.SelectedIndex != -1)
             {
-                decimal.TryParse(withdrawBox.Text, out amount);
+                decimal.TryParse(amountBox.Text, out amount);
                 success = AccountLogic.Withdraw(customer.Accounts[accountList.SelectedIndex], amount);
             }
             MessageDialog withdraw;
             if (success)
             {
                 withdraw = new MessageDialog($"{amount} SEK withdrawn", "Withdrawal successful!");
+                Frame.Navigate(typeof(AccountPage), customer);
+                Frame.GoBack();
             }
             else
             {
@@ -102,19 +104,21 @@ namespace BankApplication
             decimal amount = 0;
             if (accountList.SelectedIndex != -1)
             {
-                decimal.TryParse(depositBox.Text, out amount);
+                decimal.TryParse(amountBox.Text, out amount);
                 success = AccountLogic.Deposit(customer.Accounts[accountList.SelectedIndex], amount);                
             }            
             MessageDialog deposit;
             if (success)
             {
                 deposit = new MessageDialog($"{amount} SEK Deposited", "Deposit Successful!");
+                Frame.Navigate(typeof(AccountPage), customer);
+                Frame.GoBack();
             }
             else
             {
                 deposit = new MessageDialog("Deposit failed...");
             }
-            await deposit.ShowAsync();     
+            await deposit.ShowAsync();
         }
         private async void myCloseAccount_Click(object sender, RoutedEventArgs e)
         {
@@ -130,12 +134,14 @@ namespace BankApplication
 
                 if ((int)result.Id == 0)
                 {
-                    string rate = AccountLogic.CloseAccount((Account)accountList.SelectedItem, customer);
+                    string rate = AccountLogic.PrintAccountInfo((Account)accountList.SelectedItem);
+                    customer.Accounts.Remove((Account)accountList.SelectedItem);
                     MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
                     await msg2.ShowAsync();
 
                 }
             }                    
         }
+        
     }
 }

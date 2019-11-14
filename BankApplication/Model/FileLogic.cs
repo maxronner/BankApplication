@@ -12,37 +12,46 @@ namespace BankApplication
         public async void PrintCustomersInfo()
         {
             //Printa för- och efternamn samt personnummer till fil.
+            Windows.Storage.StorageFolder storageFolder =
+            Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+            await storageFolder.CreateFileAsync("CustomerInformation.txt",
+            Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
-            foreach (var item in CustomerLogic.Customers)
+            string result = "Newton Bank - Customer information\n\n";
+
+            foreach  (Customer customer in CustomerLogic.Customers)
             {
-                Windows.Storage.StorageFolder storageFolder =
-                Windows.Storage.ApplicationData.Current.LocalFolder;
-                Windows.Storage.StorageFile sampleFile =
-                await storageFolder.CreateFileAsync("CustomerInformation.txt",
-                Windows.Storage.CreationCollisionOption.ReplaceExisting);
-                await Windows.Storage.FileIO.WriteTextAsync(sampleFile, $"Namn: {item.Name} Personnummer: {item.SSN}");
+                result += $"Name: {customer.Name} \n\tSSN: {customer.SSN}\n";
             }
+            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result);
         }
 
         public async void TransactionsHistory(Account account)
         {
             try
             {
+
+                Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+                Windows.Storage.StorageFile sampleFile =
+                await storageFolder.CreateFileAsync($"TransactionHistory - {account.AccountID}.txt",
+                Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+                string result = $"AccountID: {account.AccountID} || Remaining balance: {account.Balance} SEK " +
+                                $"|| {account.GetType().Name} ({account.Interest*100}%) \n ";
+
                 foreach (var transaction in account.Transactions)
                 {
-                    Windows.Storage.StorageFolder storageFolder =
-                    Windows.Storage.ApplicationData.Current.LocalFolder;
-                    Windows.Storage.StorageFile sampleFile =
-                    await storageFolder.CreateFileAsync("TransactionHistory.txt",
-                     Windows.Storage.CreationCollisionOption.ReplaceExisting);
-                    await Windows.Storage.FileIO.WriteTextAsync(sampleFile, $"{transaction.Time}\t" +
-                                                                            $"Account ID: {transaction.AccountID}\t" +
-                                                                            $"{transaction.TransactionType}\t\t" +
-                                                                            $"Amount: {transaction.Amount}\t " +
-                                                                            $"Remaining balance: {transaction.NewBalance}");
+                    result += $"\n{transaction.Time}\t" +
+                                       $"{transaction.TransactionType}: \t" +
+                                       $"Amount: {transaction.Amount} SEK \t " +
+                                       $"Remaining balance: {transaction.NewBalance} SEK \n";
                 }
+
+                await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result);
             }
-            catch (Exception) { }         
+            catch (Exception) { }
         }
     }
 }
