@@ -10,7 +10,7 @@ namespace BankApplication
 {
     public static class CustomerLogic
     {
-        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer> 
+        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>   // lista med bankens kunder
             {
             new Customer(8409039567, "Lars-Åke Cederlund"),
             new Customer(7812230654, "Florence Liljedahl"),
@@ -20,7 +20,7 @@ namespace BankApplication
             new Customer(9912020873, "Carl-Johan Sterner"),
             new Customer(0111161209, "Eddy")
             };
-        public static bool CustomerExists (long ssn)
+        public static bool CustomerExists (long ssn) // kontrollerar så personnr inte redan finns 
         {
             foreach (Customer customer in Customers)
             {
@@ -31,19 +31,19 @@ namespace BankApplication
             }
             return false;
         }
-        public static bool AddCustomer(string name, long ssn)
+        public static bool AddCustomer(string name, long ssn)   //lägger till ny kund
         {
-            if (CustomerExists(ssn))
+            if (CustomerExists(ssn)) // kontrollerar om person redan finns som kund
             {
                 return false;
             }
             else
             {
-                Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");
+                Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");     // endast bokstäver i namnet 
                 MatchCollection matches = regexLetters.Matches(name);
 
                 //Vad används denna till?
-                Regex regexNumbers = new Regex(@"^[0-9]+$");
+                Regex regexNumbers = new Regex(@"^[0-9]+$");        //endast siffror i personnr
                 MatchCollection matches2 = regexNumbers.Matches(ssn.ToString());
                 if (matches.Count > 0 && matches2.Count > 0 && ssn.ToString().Length == 10 && name != "")
                 {
@@ -53,11 +53,11 @@ namespace BankApplication
                 return false;
             }
         }
-        public static bool ChangeCustomerName(Customer customer, string name)
+        public static bool ChangeCustomerName(Customer customer, string name) //ändrar namnet på en kund
         {
             try
             {
-                Regex regex = new Regex(@"^[a-öA-Ö]+$");
+                Regex regex = new Regex(@"^[a-öA-Ö]+$");        //endast bokstäver i namnet
                 MatchCollection matches = regex.Matches(name);
                 if (matches.Count > 0)
                 {
@@ -69,7 +69,7 @@ namespace BankApplication
             return false;
         }
 
-        public static bool Login(string username, string password)
+        public static bool Login(string username, string password) 
         {
             string input = "admin";
             if (username == input && password == input)
