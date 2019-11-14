@@ -18,16 +18,13 @@ namespace BankApplication
             await storageFolder.CreateFileAsync("CustomerInformation.txt",
             Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
-            List<string> customerInfo = new List<string>();
+            string result = "Newton Bank - Customer information\n\n";
 
-            foreach (var customer in CustomerLogic.Customers)
+            foreach  (Customer customer in CustomerLogic.Customers)
             {
-                customerInfo.Add($"Name: {customer.Name} \n\tSSN: {customer.SSN}\n");
+                result += $"Name: {customer.Name} \n\tSSN: {customer.SSN}\n";
             }
-            string bankInfo = "Newton Bank - Customer information\n\n";
-            string allCustomers = String.Join("", customerInfo.ToArray());
-            string allInfo = String.Concat(bankInfo, allCustomers);
-            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, allInfo);
+            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result);
         }
 
         public async void TransactionsHistory(Account account)
@@ -41,19 +38,18 @@ namespace BankApplication
                 await storageFolder.CreateFileAsync($"TransactionHistory - {account.AccountID}.txt",
                 Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
-                List<string> specTrans = new List<string>();
+                string result = $"AccountID: {account.AccountID} || Remaining balance: {account.Balance} SEK " +
+                                $"|| {account.GetType().Name} ({account.Interest*100}%) \n ";
 
                 foreach (var transaction in account.Transactions)
                 {
-                    specTrans.Add($"\n{transaction.Time}\t" +
+                    result += $"\n{transaction.Time}\t" +
                                        $"{transaction.TransactionType}: \t" +
                                        $"Amount: {transaction.Amount} SEK \t " +
-                                       $"Remaining balance: {transaction.NewBalance}\n");
+                                       $"Remaining balance: {transaction.NewBalance} SEK \n";
                 }
-                var accInfo = $"AccountID: {account.AccountID} Remaining balance: {account.Balance}\n";
-                var allTrans = String.Join(" ", specTrans.ToArray());
-                var transHist = String.Concat(accInfo, allTrans);
-                await Windows.Storage.FileIO.WriteTextAsync(sampleFile, transHist); 
+
+                await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result);
             }
             catch (Exception) { }
         }
