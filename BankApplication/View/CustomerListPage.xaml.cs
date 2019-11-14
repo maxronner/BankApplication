@@ -49,7 +49,10 @@ namespace BankApplication
 
                 if ((int)result.Id == 0)
                 {
-                    CustomerLogic.RemoveCustomer((Customer) customerList.SelectedItem);
+                    Customer temp = (Customer)customerList.SelectedItem;
+                    MessageDialog remove = new MessageDialog(CustomerLogic.RemoveCustomer(temp),
+                        $"Customer {temp.Name} was removed.");
+                    await remove.ShowAsync();
                 }
             }
         }
@@ -76,8 +79,9 @@ namespace BankApplication
         private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             new FileLogic().PrintCustomersInfo();
-            MessageDialog PrintCustomers = new MessageDialog($"Customers were printed to file", "Customers Printed Successfully!");
-            var result = await PrintCustomers.ShowAsync();
+            MessageDialog PrintCustomers = new MessageDialog($"Transactions were printed to C:'\'Users'\'USER'\'AppData'\'Local'\'Packages", 
+                "Customer information printed!");
+            await PrintCustomers.ShowAsync();
         }
 
         private async void addCustomer_Click(object sender, RoutedEventArgs e)

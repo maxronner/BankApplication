@@ -49,7 +49,7 @@ namespace BankApplication
 
         private async void myPrint_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog Print = new MessageDialog($"Transactions were printed to C: ", "Transactions Printed!");
+            MessageDialog Print = new MessageDialog($"Transactions were printed to C:'\'Users'\'USER'\'AppData'\'Local'\'Packages", "Transactions printed!");
             await Print.ShowAsync();
             new FileLogic().TransactionsHistory(account);
         }

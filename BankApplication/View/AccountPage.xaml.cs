@@ -90,6 +90,7 @@ namespace BankApplication
             {
                 withdraw = new MessageDialog($"{amount} SEK withdrawn", "Withdrawal successful!");
                 Frame.Navigate(typeof(AccountPage), customer);
+                Frame.GoBack();
             }
             else
             {
@@ -111,6 +112,7 @@ namespace BankApplication
             {
                 deposit = new MessageDialog($"{amount} SEK Deposited", "Deposit Successful!");
                 Frame.Navigate(typeof(AccountPage), customer);
+                Frame.GoBack();
             }
             else
             {
@@ -132,7 +134,8 @@ namespace BankApplication
 
                 if ((int)result.Id == 0)
                 {
-                    string rate = AccountLogic.CloseAccount((Account)accountList.SelectedItem, customer);
+                    string rate = AccountLogic.PrintAccountInfo((Account)accountList.SelectedItem);
+                    customer.Accounts.Remove((Account)accountList.SelectedItem);
                     MessageDialog msg2 = new MessageDialog(rate, "Deleted account information");
                     await msg2.ShowAsync();
 

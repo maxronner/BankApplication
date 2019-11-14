@@ -80,15 +80,15 @@ namespace BankApplication
         }
 
 
-        public static List<string> RemoveCustomer(Customer customer) 
+        public static string RemoveCustomer(Customer customer) 
         {
-            List<string> removedCustomer = new List<string>();
+            string removedCustomer = "Accounts removed: \n";
 
-            try 
+            try
             {
                 foreach (var item in customer.Accounts)
                 {
-                    removedCustomer.Add($"{item.AccountID.ToString()}: {item.Balance.ToString()}");
+                    removedCustomer += AccountLogic.PrintAccountInfo(item) + "\n";
                 }
                 Customers.Remove(customer);
             }
