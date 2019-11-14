@@ -12,8 +12,8 @@ namespace BankApplication
         public double DebtInterest { get; set; }
         public CreditAccount(decimal balance = 0, double interest = 0.005) :base(balance, interest)
         {
-            DebtInterest = 0.07;
-            CreditLimit = 5000;
+            DebtInterest = 0.07; 
+            CreditLimit = 5000;    
         }
     }
 }

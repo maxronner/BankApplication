@@ -9,7 +9,7 @@ namespace BankApplication
 {
     public abstract class Account
     {
-        public ObservableCollection<Transaction> Transactions { get; set; } = new ObservableCollection<Transaction>();
+        public ObservableCollection<Transaction> Transactions { get; set; } = new ObservableCollection<Transaction>(); //lista över en kunds transaktioner
         public decimal Balance { get; set; }
         public double Interest { get; set; }
         public int AccountID { get; set; }
