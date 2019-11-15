@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
+    /// <summary>
+    /// A class that handles savings account information. 
+    /// </summary>
     class SavingsAccount : Account
     {
         public double WithdrawFee { get; set; }

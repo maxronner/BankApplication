@@ -9,9 +9,11 @@ namespace BankApplication
 {
     public class FileLogic
     {
+        /// <summary>
+        /// Prints the first and last name as well as social security number to a file. 
+        /// </summary>
         public async void PrintCustomersInfo()
         {
-            //Printa för- och efternamn samt personnummer till fil.
             Windows.Storage.StorageFolder storageFolder =
             Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile sampleFile =
@@ -26,8 +28,11 @@ namespace BankApplication
             }
             await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result);
         }
-
-        public async void TransactionsHistory(Account account)
+        /// <summary>
+        /// Prints selected account transaction history to a file. 
+        /// </summary>
+        /// <param name="account"></param>
+        public async void PrintTransactionsHistory(Account account)
         {
             try
             {

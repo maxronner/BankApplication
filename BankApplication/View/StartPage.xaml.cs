@@ -20,7 +20,7 @@ using System.Windows.Input;
 namespace BankApplication
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Startpage and login sequence. 
     /// </summary>
     public sealed partial class StartPage : Page
     {

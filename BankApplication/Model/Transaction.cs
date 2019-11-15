@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
+    /// <summary>
+    /// Handles transaction information. 
+    /// </summary>
     public class Transaction
     {
         public long AccountID { get; set; }
@@ -23,6 +26,9 @@ namespace BankApplication
             Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
         }
+        /// <summary>
+        /// Properties made for GUI. 
+        /// </summary>
         public string DisplayAccID { get { return $"Account ID: {AccountID}"; } }
         public string DisplayTime { get { return $"Time of transaction: {Time}"; } }
         public string DisplayType { get { return $"{TransactionType}"; } }

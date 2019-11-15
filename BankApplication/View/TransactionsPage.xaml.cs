@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 namespace BankApplication
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Displays transactions for chosen customers account. 
     /// </summary>
     /// 
     public sealed partial class TransactionsPage : Page
@@ -44,14 +44,13 @@ namespace BankApplication
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             account = (Account)e.Parameter;
-            //behandla data från mottaget objekt 
         }
 
         private async void myPrint_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog Print = new MessageDialog($"Transactions were printed to C:'\'Users'\'USER'\'AppData'\'Local'\'Packages", "Transactions printed!");
             await Print.ShowAsync();
-            new FileLogic().TransactionsHistory(account);
+            new FileLogic().PrintTransactionsHistory(account);
         }
     }
 }

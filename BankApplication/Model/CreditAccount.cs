@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
+    /// <summary>
+    /// Handles credit account information. 
+    /// </summary>
     public class CreditAccount : Account
     {
         public decimal CreditLimit { get; set; }

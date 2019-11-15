@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
+    /// <summary>
+    /// Handles customer information.
+    /// </summary>
     public class Customer
     {
         private long ssn;
@@ -16,7 +19,10 @@ namespace BankApplication
             get { return ssn; }
             private set { if (value.ToString().Length != 10) ssn = 0; else ssn = value; }
         }
-        public  ObservableCollection<Account> Accounts { get; set; }        // kundens konto
+        /// <summary>
+        /// The selected customers accounts. 
+        /// </summary>
+        public  ObservableCollection<Account> Accounts { get; set; }        
 
         public Customer(long ssn, string name)
         {

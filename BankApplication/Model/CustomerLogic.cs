@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace BankApplication
 {
+    /// <summary>
+    /// Handles all logic for customer.
+    /// </summary>
     public static class CustomerLogic
     {
-        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>   // lista med bankens kunder
+        /// <summary>
+        /// A list with the banks existing customers. 
+        /// </summary>
+        public static ObservableCollection<Customer> Customers { get; set; } = new ObservableCollection<Customer>  
             {
             new Customer(8409039567, "Lars-Åke Cederlund"),
             new Customer(7812230654, "Florence Liljedahl"),
@@ -18,9 +24,11 @@ namespace BankApplication
             new Customer(9204021234, "Veronica Smedberg-Bolander"),
             new Customer(9301200938, "Maj Sahlén"),
             new Customer(9912020873, "Carl-Johan Sterner"),
-            new Customer(0111161209, "Eddy")
             };
-        public static bool CustomerExists (long ssn) // kontrollerar så personnr inte redan finns 
+        /// <summary>
+        /// Makes sure the new customers social security number is unique. 
+        /// </summary>
+        public static bool CustomerExists (long ssn) 
         {
             foreach (Customer customer in Customers)
             {
@@ -31,19 +39,25 @@ namespace BankApplication
             }
             return false;
         }
-        public static bool AddCustomer(string name, long ssn)   //lägger till ny kund
+        /// <summary>
+        /// Adds new customer. 
+        /// </summary>
+  
+        public static bool AddCustomer(string name, long ssn)  
         {
-            if (CustomerExists(ssn)) // kontrollerar om person redan finns som kund
+            //Makes sure the social security number doesn't already exist. 
+            if (CustomerExists(ssn)) 
             {
                 return false;
             }
             else
             {
-                Regex regexLetters = new Regex(@"^[a-öA-Ö]+$");     // endast bokstäver i namnet 
+                //Only allows letters and spaces in the name box. 
+                Regex regexLetters = new Regex(@"^[a-öA-Ö ]+$");     
                 MatchCollection matches = regexLetters.Matches(name);
 
-                //Vad används denna till?
-                Regex regexNumbers = new Regex(@"^[0-9]+$");        //endast siffror i personnr
+                //Only allows numbers in the social security box. 
+                Regex regexNumbers = new Regex(@"^[0-9]+$");       
                 MatchCollection matches2 = regexNumbers.Matches(ssn.ToString());
                 if (matches.Count > 0 && matches2.Count > 0 && ssn.ToString().Length == 10 && name != "")
                 {
@@ -53,11 +67,15 @@ namespace BankApplication
                 return false;
             }
         }
-        public static bool ChangeCustomerName(Customer customer, string name) //ändrar namnet på en kund
+        /// <summary>
+        /// Changes the name of a customer.
+        /// </summary>
+        public static bool ChangeCustomerName(Customer customer, string name) 
         {
             try
             {
-                Regex regex = new Regex(@"^[a-öA-Ö]+$");        //endast bokstäver i namnet
+                //Only allows letters in the name box. 
+                Regex regex = new Regex(@"^[a-öA-Ö ]+$");        
                 MatchCollection matches = regex.Matches(name);
                 if (matches.Count > 0)
                 {
@@ -69,6 +87,9 @@ namespace BankApplication
             return false;
         }
 
+        /// <summary>
+        /// Sets a password that is required to login on Startpage. 
+        /// </summary>
         public static bool Login(string username, string password) 
         {
             string input = "admin";
@@ -79,7 +100,9 @@ namespace BankApplication
             return false;
         }
 
-
+        /// <summary>
+        /// Prints the account information upon removal.
+        /// </summary>
         public static string RemoveCustomer(Customer customer) 
         {
             string removedCustomer = "Accounts removed: \n";

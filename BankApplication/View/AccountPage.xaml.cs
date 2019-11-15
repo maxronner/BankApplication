@@ -20,7 +20,7 @@ using Windows.UI.Popups;
 namespace BankApplication
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Account page for selected customer. 
     /// </summary>
     public sealed partial class AccountPage : Page
     {

@@ -20,7 +20,7 @@ using Windows.UI.Xaml.Navigation;
 namespace BankApplication
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// List that displays all customers, also allows you to add or remove customers. 
     /// </summary>
     public sealed partial class CustomerListPage : Page
     {
