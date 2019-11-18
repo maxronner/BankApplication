@@ -79,7 +79,7 @@ namespace BankApplication
         private async void printCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             new FileLogic().PrintCustomersInfo();
-            MessageDialog PrintCustomers = new MessageDialog($"Transactions were printed to C:'\'Users'\'USER'\'AppData'\'Local'\'Packages", 
+            MessageDialog PrintCustomers = new MessageDialog($"Transactions were printed to C:\\Users\\USER\\AppData\\Local\\Packages", 
                 "Customer information printed!");
             await PrintCustomers.ShowAsync();
         }
